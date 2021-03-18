@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android">
+    <data>
+        <import type = "com.example.icemusic.data.TabCellData"/>
+        <variable
+            name="cellData"
+            type="com.example.icemusic.data.TabCellData" />
+    </data>
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
+        <ImageView
+            android:layout_width="@dimen/tab_cell_image_width"
+            android:layout_height="@dimen/tab_cell_image_height"
+            android:layout_gravity="center"
+            android:background="@{cellData.state?cellData.selectColor:cellData.unSelectColor}"/>
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@{cellData.name}"
+            android:layout_gravity="center"
+            android:hint="@string/tabHint"/>
+    </LinearLayout>
+</layout>

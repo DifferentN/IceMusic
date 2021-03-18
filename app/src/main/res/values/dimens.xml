@@ -1,0 +1,74 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <dimen name="tabLayout_bottom_padding">5dp</dimen>
+    //finding page
+    //底部导航栏图片大小
+    <dimen name="tab_cell_image_height">50dp</dimen>
+    <dimen name="tab_cell_image_width">50dp</dimen>
+
+    //finding page head tab
+    <dimen name="head_tab_height">50dp</dimen>
+
+    //广告位大小设定
+    <dimen name="ad_height">100dp</dimen>
+    <dimen name="ad_indicator_group_width">200dp</dimen>
+    <dimen name="ad_indicator_width">12dp</dimen>
+    <dimen name="ad_indicator_height">4dp</dimen>
+    <dimen name="ad_indicator_horizontal_margin">5dp</dimen>
+    <dimen name="ad_indicator_bottom_margin">5dp</dimen>
+    <dimen name="ad_indicator_radius">2dp</dimen>
+    <dimen name="ad_page_horizontal_margin">10dp</dimen>
+    <dimen name="ad_page_list_bottom_margin">10dp</dimen>
+
+    //showType height
+    <dimen name="show_type_height">50dp</dimen>
+
+    //发现页面的音乐类别入口列表大小设定
+    <dimen name="type_entry_cell_width">60dp</dimen>
+    <dimen name="type_entry_cell_text_size">12sp</dimen>
+    <dimen name="type_entry_cell_image_view_height">30dp</dimen>
+    <dimen name="type_entry_cell_image_view_width">30dp</dimen>
+    <dimen name="type_entry_cell_end_margin">15dp</dimen>
+    <dimen name="type_entry_cell_bottom_margin">5dp</dimen>
+    <dimen name="type_entry_list_start_margin">15dp</dimen>
+    <dimen name="type_entry_list_end_margin">15dp</dimen>
+    <dimen name="type_entry_list_bottom_margin">10dp</dimen>
+
+    //发现页面左右两侧的空白大小
+    <dimen name="finding_page_start_blank_width">10dp</dimen>
+    <dimen name="finding_page_end_blank_width">10dp</dimen>
+
+    //发现页面推荐歌单大小
+    <dimen name="recommend_song_list_title_start_margin">5dp</dimen>
+    <dimen name="recommend_song_list_title_size">30sp</dimen>
+    <dimen name="recommend_song_list_more_end_margin">5dp</dimen>
+    <dimen name="recommend_song_cell_width">100dp</dimen>
+    <dimen name="recommend_song_cell_image_height">100dp</dimen>
+    <dimen name="recommend_song_cell_image_end_margin">10dp</dimen>
+    <dimen name="recommend_song_cell_image_bottom_margin">3dp</dimen>
+    <dimen name="recommend_song_cell_play_num_end_margin">2dp</dimen>
+    <dimen name="recommend_song_cell_play_num_text_size">12dp</dimen>
+    <dimen name="recommend_song_cell_title_size">12sp</dimen>
+
+
+    //通用按钮大小
+    <dimen name="button_radius">5dp</dimen>
+    <dimen name="button_width">36dp</dimen>
+    <dimen name="button_height">20dp</dimen>
+
+    //发现页面私人定制大小
+    <dimen name="personal_song_cell_width">300dp</dimen>
+    <dimen name="personal_song_cell_image_width">60dp</dimen>
+    <dimen name="personal_song_cell_image_height">60dp</dimen>
+    <dimen name="personal_song_cell_image_end_margin">10dp</dimen>
+    <dimen name="personal_song_cell_title_text_size">16sp</dimen>
+    <dimen name="personal_song_cell_time_text_size">12sp</dimen>
+    <dimen name="personal_song_cell_author_top_margin">10dp</dimen>
+    <dimen name="personal_song_cell_author_text_size">12sp</dimen>
+    <dimen name="personal_song_list_title_text_size">20sp</dimen>
+    <dimen name="personal_song_list_title_start_margin">10dp</dimen>
+    <dimen name="personal_song_list_title_bottom_margin">10dp</dimen>
+    <dimen name="personal_song_cell_end_margin">10dp</dimen>
+    <dimen name="personal_song_cell_bottom_margin">16dp</dimen>
+
+</resources>

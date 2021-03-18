@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <data>
+
+        <variable
+            name="obj"
+            type="com.example.icemusic.data.AdIndicatorData" />
+    </data>
+
+    <ImageView
+        android:id="@+id/ad_tab_cell_image_view"
+        android:layout_width="@dimen/ad_indicator_width"
+        android:layout_height="@dimen/ad_indicator_height"
+        android:layout_marginHorizontal="@dimen/ad_indicator_horizontal_margin"
+        android:background="@{obj.state? @drawable/ad_indicator_selected:@drawable/ad_indicator_unselected}" />
+</layout>

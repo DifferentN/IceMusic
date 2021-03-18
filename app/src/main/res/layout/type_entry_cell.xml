@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <data>
+
+        <import type="com.example.icemusic.data.TypeEntryCellData" />
+
+        <variable
+            name="obj"
+            type="TypeEntryCellData" />
+    </data>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="@dimen/type_entry_cell_width"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="@dimen/type_entry_cell_end_margin"
+        android:layout_marginBottom="@dimen/type_entry_cell_bottom_margin">
+
+        <ImageView
+            android:id="@+id/type_entry_cell_image_view"
+            android:layout_width="@dimen/type_entry_cell_image_view_width"
+            android:layout_height="@dimen/type_entry_cell_image_view_height"
+            android:gravity="center_horizontal"
+            android:imageUrl="@{obj.imageUrl}"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <TextView
+            android:id="@+id/type_entry_cell_text_view"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:gravity="center_horizontal"
+            android:text="@{obj.entryCellTitle}"
+            android:textSize="@dimen/type_entry_cell_text_size"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/type_entry_cell_image_view" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</layout>

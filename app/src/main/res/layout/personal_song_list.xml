@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/personal_song_list_title"
+            android:text="@string/personal_songList_title"
+            android:textSize="@dimen/personal_song_list_title_text_size"
+            android:layout_marginStart="@dimen/personal_song_list_title_start_margin"
+            android:layout_marginBottom="@dimen/personal_song_list_title_bottom_margin"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintStart_toStartOf="parent"/>
+
+        <com.example.icemusic.view.SmallLinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/personal_song_small_linear_layout"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/personal_song_list_title">
+
+            <androidx.recyclerview.widget.RecyclerView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:id="@+id/personal_song_recycler_view"/>
+
+        </com.example.icemusic.view.SmallLinearLayout>
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</layout>

@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <TextView
+            android:id="@+id/recommend_song_list_title"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/recommend_song_list_title"
+            android:layout_marginStart="@dimen/finding_page_start_blank_width"
+            app:layout_constraintBottom_toTopOf="@+id/recommend_songList_small_linear_layout"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <Button
+            android:id="@+id/recommend_song_list_more"
+            android:layout_width="@dimen/button_width"
+            android:layout_height="@dimen/button_height"
+            android:background="@drawable/button_back_ground"
+            android:text="@string/recommend_song_list_more"
+            android:layout_marginEnd="@dimen/finding_page_end_blank_width"
+            app:layout_constraintBottom_toTopOf="@+id/recommend_songList_small_linear_layout"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <com.example.icemusic.view.SmallLinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/recommend_songList_small_linear_layout"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/recommend_song_list_title">
+
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/recommend_song_recycler_view"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content" />
+        </com.example.icemusic.view.SmallLinearLayout>
+
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+</layout>

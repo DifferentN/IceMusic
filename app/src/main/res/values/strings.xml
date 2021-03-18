@@ -1,0 +1,12 @@
+<resources>
+    <string name="app_name">IceMusic</string>
+    //tab cell
+    <string name="tabHint">音乐</string>
+
+    //发现页面推荐歌单
+    <string name="recommend_song_list_title">推荐歌单</string>
+    <string name="recommend_song_list_more">更多</string>
+
+    //发现页面私人定制
+    <string name="personal_songList_title">私人定制</string>
+</resources>

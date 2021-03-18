@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <data>
+        <import type="com.example.icemusic.viewModel.RecommendSongCellViewModel"/>
+        <variable
+            name="obj"
+            type="RecommendSongCellViewModel" />
+    </data>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="@dimen/recommend_song_cell_width"
+        android:layout_height="wrap_content">
+
+
+
+        <ImageView
+            android:id="@+id/recommend_song_cell_image_view"
+            android:layout_width="@dimen/recommend_song_cell_width"
+            android:layout_height="@dimen/recommend_song_cell_image_height"
+            android:layout_marginEnd="@dimen/recommend_song_cell_image_end_margin"
+            android:layout_marginBottom="@dimen/recommend_song_cell_image_bottom_margin"
+            android:imageUrl="@{obj.recommendSongCellData.imageUrl}"
+            app:layout_constraintBottom_toTopOf="@id/recommend_song_cell_title"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <TextView
+            android:id="@+id/recommend_song_cell_play_num"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="@dimen/recommend_song_cell_play_num_end_margin"
+            android:textSize="@dimen/recommend_song_cell_play_num_text_size"
+            android:text="@{obj.recommendSongCellData.playNumText}"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <TextView
+            android:id="@+id/recommend_song_cell_title"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:maxLines="2"
+            android:textSize="@dimen/recommend_song_cell_title_size"
+            android:text="@{obj.recommendSongCellData.recommendCellTitle}"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/recommend_song_cell_image_view" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</layout>

@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android" >
+    <data>
+        <import type="com.example.icemusic.viewModel.TypeEntryListViewModel"/>
+        <variable
+            name="obj"
+            type="TypeEntryListViewModel" />
+    </data>
+
+    <com.example.icemusic.view.SmallLinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
+        <androidx.recyclerview.widget.RecyclerView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/type_entry_recycler_view"
+            android:layout_marginBottom="@dimen/type_entry_list_bottom_margin" />
+    </com.example.icemusic.view.SmallLinearLayout>
+
+</layout>

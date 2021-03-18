@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+    <data>
+        <import type="com.example.icemusic.data.PersonalSongCellData"/>
+
+        <variable
+            name="obj"
+            type="PersonalSongCellData" />
+    </data>
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="@dimen/personal_song_cell_width"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="@dimen/personal_song_cell_bottom_margin"
+        android:layout_marginEnd="@dimen/personal_song_cell_end_margin">
+
+        <ImageView
+            android:layout_width="@dimen/personal_song_cell_image_width"
+            android:layout_height="@dimen/personal_song_cell_image_height"
+            android:id="@+id/personal_song_cell_image_view"
+            android:imageUrl="@{obj.imageUrl}"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintEnd_toStartOf="@+id/personal_song_cell_title"/>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/personal_song_cell_title"
+            android:textSize="@dimen/personal_song_cell_title_text_size"
+            android:layout_marginStart="@dimen/personal_song_cell_image_end_margin"
+            android:maxLines="1"
+            android:maxEms="11"
+            android:text="@{obj.title}"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintBottom_toTopOf="@+id/personal_song_cell_author"
+            app:layout_constraintStart_toEndOf="@+id/personal_song_cell_image_view" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/personal_song_cell_time"
+            android:textSize="@dimen/personal_song_cell_time_text_size"
+            android:text="@{obj.time}"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintStart_toEndOf="@+id/personal_song_cell_title"/>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/personal_song_cell_image_end_margin"
+            android:layout_marginTop="@dimen/personal_song_cell_author_top_margin"
+            android:id="@+id/personal_song_cell_author"
+            android:textSize="@dimen/personal_song_cell_author_text_size"
+            android:text="@{obj.author}"
+            app:layout_constraintTop_toBottomOf="@+id/personal_song_cell_title"
+            app:layout_constraintStart_toEndOf="@+id/personal_song_cell_image_view"/>
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</layout>
