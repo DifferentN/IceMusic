@@ -31,7 +31,7 @@ class SearchResultContentFragment(var searchResultContentVM:SearchResultContentV
         var recyclerView = searchResultContentPageBinding.searchResultContentRecyclerView
 
         GlobalScope.launch {
-            searchResultContentVM.updateViewModeList()
+            searchResultContentVM.updateViewModelList()
         }
 
         var adapter = BaseRecyclerViewAdapter(this)

@@ -17,10 +17,13 @@
             android:layout_width="@dimen/back_image_view_width"
             android:layout_height="@dimen/back_image_view_height"
             android:id="@+id/search_music_back_image_view"
+            android:background="@drawable/left_arrow"
             android:layout_marginStart="@dimen/search_page_start_blank_width"
             android:layout_marginEnd="@dimen/back_image_view_end_margin"
+            android:onClick="@{obj::popBack}"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintBottom_toBottomOf="@+id/search_music_edit_view"
             app:layout_constraintEnd_toStartOf="@+id/search_music_edit_view"/>
 
         <EditText
@@ -62,6 +65,7 @@
             android:id="@+id/search_page_hint_list_recycler_view"
             android:layout_marginTop="@dimen/search_page_hint_list_top_margin"
             android:visibility="@{obj.hintRecyclerViewVisible}"
+            android:background="@color/white"
             app:layout_constraintStart_toStartOf="@+id/search_music_edit_view"
             app:layout_constraintEnd_toEndOf="@+id/search_music_edit_view"
             app:layout_constraintTop_toBottomOf="@+id/search_music_edit_view"/>

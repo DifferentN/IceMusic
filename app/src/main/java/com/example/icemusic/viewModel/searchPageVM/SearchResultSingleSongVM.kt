@@ -8,8 +8,8 @@ import com.example.icemusic.viewModel.BaseViewModel
 
 class SearchResultSingleSongVM(searchWord:String):SearchResultContentVM(searchWord) {
 
-    override suspend fun onLoadViewModelList(): MutableList<BaseViewModel> {
-        var singleSongDatas = loadSingleSongDataList()
+    override suspend fun onLoadViewModelList(searchWord: String): MutableList<BaseViewModel> {
+        var singleSongDatas = loadSingleSongDataList(searchWord)
         var singleSongVMs = mutableListOf<BaseViewModel>()
         for(data in singleSongDatas){
             var singleSongCellVM = SingleSongCellVM(data)
@@ -22,7 +22,7 @@ class SearchResultSingleSongVM(searchWord:String):SearchResultContentVM(searchWo
 
     }
 
-    suspend fun loadSingleSongDataList():MutableList<SearchSingleSongData>{
+    suspend fun loadSingleSongDataList(searchWord: String):MutableList<SearchSingleSongData>{
         var searchWorker = SearchSongWorker()
         return searchWorker.searchSongData(searchWord)
     }

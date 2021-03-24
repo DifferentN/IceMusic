@@ -7,6 +7,7 @@ import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.navigation.fragment.navArgs
 import com.example.icemusic.adapter.fragmentAdapter.SearchResultViewPager2Adapter
+import com.example.icemusic.data.eventBus.SearchChangeEvent
 import com.example.icemusic.data.searchData.SearchResultTabData
 import com.example.icemusic.databinding.SearchResultBinding
 import com.example.icemusic.databinding.SearchResultTabLayoutCellBinding
@@ -15,6 +16,11 @@ import com.example.icemusic.viewModel.searchPageVM.SearchResultContentVM
 import com.example.icemusic.viewModel.searchPageVM.SearchResultSingleSongVM
 import com.google.android.material.tabs.TabLayout
 import com.google.android.material.tabs.TabLayoutMediator
+import kotlinx.coroutines.GlobalScope
+import kotlinx.coroutines.launch
+import org.greenrobot.eventbus.EventBus
+import org.greenrobot.eventbus.Subscribe
+import org.greenrobot.eventbus.ThreadMode
 
 class SearchResultFragment:Fragment() {
 
@@ -35,6 +41,7 @@ class SearchResultFragment:Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+        EventBus.getDefault().register(this)
 
         var inflater = LayoutInflater.from(this.requireContext())
 
@@ -73,6 +80,15 @@ class SearchResultFragment:Fragment() {
             add(SearchResultSingleSongVM(searchWord))
             add(SearchResultSingleSongVM(searchWord))
             add(SearchResultSingleSongVM(searchWord))
+        }
+    }
+
+    @Subscribe(threadMode = ThreadMode.MAIN)
+    fun onHandleSearchChange(searchChangeEvent:SearchChangeEvent){
+        var viewPager2 = searchResultBinding.searchResultViewPager2
+        var searchResultContentVM = searchResultContentVMList[viewPager2.currentItem]
+        GlobalScope.launch {
+            searchResultContentVM.updateViewModelList(searchChangeEvent.searchWord)
         }
 
     }

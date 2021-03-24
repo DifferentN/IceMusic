@@ -52,7 +52,7 @@
             android:layout_height="@dimen/play_song_tab_switch_height"
             android:id="@+id/play_song_tab_switch"
             android:layout_marginEnd="@dimen/play_song_tab_switch_end_margin"
-            android:background="@{vm.playSwitchFlag?@color/green:@color/gray}"
+            android:background="@{vm.playSwitchFlag?@drawable/pause_icon:@drawable/play_icon}"
             android:onClick="@{vm::switchSong}"
             app:layout_constraintTop_toTopOf="parent"
             app:layout_constraintBottom_toBottomOf="parent"

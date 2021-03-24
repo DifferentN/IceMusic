@@ -14,7 +14,7 @@
             android:layout_width="@dimen/tab_cell_image_width"
             android:layout_height="@dimen/tab_cell_image_height"
             android:layout_gravity="center"
-            android:background="@{cellData.state?cellData.selectColor:cellData.unSelectColor}"/>
+            android:drawableId="@{cellData.state?cellData.selectImage:cellData.unSelectImage}"/>
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"

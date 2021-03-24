@@ -22,12 +22,19 @@ abstract class SearchResultContentVM(var searchWord:String) : BaseViewModel() {
         layoutId = R.layout.search_result_content_page
     }
 
-    suspend fun updateViewModeList(){
-        var newVMList = onLoadViewModelList()
+    suspend fun updateViewModelList(){
+        var newVMList = onLoadViewModelList(searchWord)
         runBlocking(Dispatchers.Main) {
             viewModelList.value = newVMList
         }
     }
 
-    abstract suspend fun onLoadViewModelList():MutableList<BaseViewModel>
+    abstract suspend fun onLoadViewModelList(searchWord: String):MutableList<BaseViewModel>
+
+    suspend fun updateViewModelList(searchWord:String){
+        var newVMList = onLoadViewModelList(searchWord)
+        runBlocking(Dispatchers.Main) {
+            viewModelList.value = newVMList
+        }
+    }
 }

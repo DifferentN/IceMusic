@@ -15,7 +15,7 @@ class SearchSongWorkerTest : TestCase() {
 
     fun testSearchSongData() {
         searchSongWorker = SearchSongWorker()
-//        searchSongWorker?.searchSongData("李白")
+//        searchSongWorker?.searchSongData("好几年")
     }
 
     fun testExtractSingleSongDataList() {}

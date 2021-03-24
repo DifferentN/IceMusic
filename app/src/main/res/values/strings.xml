@@ -19,4 +19,8 @@
     //导航图标签
     //首页标签
     <string name="nav_label_main_page_fragment">MainPageFragment</string>
+    //搜索展示
+    <string name="nav_label_search_exhibition_fragment">SearchExhibitionFragment</string>
+    //搜索结果内容
+    <string name="nav_label_search_result_fragment">SearchResultFragment</string>
 </resources>

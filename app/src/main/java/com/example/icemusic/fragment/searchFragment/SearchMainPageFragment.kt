@@ -11,7 +11,9 @@ import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
+import com.example.icemusic.R
 import com.example.icemusic.adapter.recyclerAdapter.base.BaseRecyclerViewAdapter
+import com.example.icemusic.data.eventBus.SearchChangeEvent
 import com.example.icemusic.data.eventBus.SearchHintEvent
 import com.example.icemusic.databinding.SearchMainPageBinding
 import com.example.icemusic.viewModel.searchPageVM.SearchPageViewModel
@@ -67,7 +69,14 @@ class SearchMainPageFragment:Fragment() {
     fun onHandleSearchHintEvent(searchHintEvent:SearchHintEvent){
         searchPageViewModel.invisibleHintList()
         var searchWord = searchHintEvent.searchWord
-        var action = SearchExhibitionFragmentDirections.actionSearchExhibitionFragmentToSearchResultFragment(searchWord)
-        binding.searchMusicPageFragment.findNavController().navigate(action)
+        var curFragmentLabel:String = binding.searchMusicPageFragment.findNavController().currentDestination!!.label.toString()
+        if(curFragmentLabel==resources.getString(R.string.nav_label_search_exhibition_fragment)){
+            var action = SearchExhibitionFragmentDirections.actionSearchExhibitionFragmentToSearchResultFragment(searchWord)
+            binding.searchMusicPageFragment.findNavController().navigate(action)
+        }else{
+            EventBus.getDefault().post(SearchChangeEvent(searchWord))
+        }
+
+
     }
 }

@@ -95,7 +95,10 @@ class MainActivity : FragmentActivity() {
                         playSongBottomTabViewModel.playSwitchFlag.set(true)
                     }
                 }
-                it.setOnCompletionListener {4
+                it.setOnCompletionListener {
+                    GlobalScope.launch (Dispatchers.Main){
+                        playSongBottomTabViewModel.playSwitchFlag.set(false)
+                    }
                     Log.i(TAG,"music completed")
                 }
                 it.setOnErrorListener { mp, what, extra ->

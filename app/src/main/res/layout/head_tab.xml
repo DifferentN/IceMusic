@@ -10,7 +10,7 @@
             android:layout_width="@dimen/head_tab_left_image_width"
             android:layout_height="@dimen/head_tab_left_image_height"
             android:id="@+id/head_extension_image"
-            android:background="@color/gray"
+            android:background="@drawable/self_menu_vec"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
             app:layout_constraintBottom_toBottomOf="parent"

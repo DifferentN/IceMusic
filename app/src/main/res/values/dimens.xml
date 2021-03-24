@@ -16,17 +16,18 @@
 
     //finding page
     //底部导航栏图片大小
-    <dimen name="tab_cell_image_height">50dp</dimen>
-    <dimen name="tab_cell_image_width">50dp</dimen>
+    <dimen name="tab_cell_image_height">30dp</dimen>
+    <dimen name="tab_cell_image_width">30dp</dimen>
 
     //顶部导航栏大小
     <dimen name="head_tab_height">50dp</dimen>
-    <dimen name="head_tab_left_image_width">50dp</dimen>
-    <dimen name="head_tab_left_image_height">50dp</dimen>
+    <dimen name="head_tab_left_image_width">36dp</dimen>
+    <dimen name="head_tab_left_image_height">36dp</dimen>
     <dimen name="head_tab_medium_width">200dp</dimen>
     <dimen name="head_tab_bottom_margin">10dp</dimen>
     <dimen name="head_tab_top_margin">5dp</dimen>
     <dimen name="head_tab_medium_start_margin">10dp</dimen>
+    <dimen name="search_tab_text_view_height">30dp</dimen>
 
     //广告位大小设定
     <dimen name="ad_height">100dp</dimen>
@@ -100,8 +101,8 @@
     <dimen name="search_page_end_blank_width">10dp</dimen>
 
     //搜索页面回退键大小
-    <dimen name="back_image_view_width">50dp</dimen>
-    <dimen name="back_image_view_height">50dp</dimen>
+    <dimen name="back_image_view_width">36dp</dimen>
+    <dimen name="back_image_view_height">36dp</dimen>
     <dimen name="back_image_view_end_margin">10dp</dimen>
 
     //搜索页面删除键大小

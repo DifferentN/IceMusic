@@ -10,6 +10,7 @@ import androidx.databinding.ObservableInt
 import androidx.databinding.ViewDataBinding
 import androidx.lifecycle.LifecycleOwner
 import androidx.lifecycle.MutableLiveData
+import androidx.navigation.findNavController
 import com.example.icemusic.R
 import com.example.icemusic.viewModel.BaseViewModel
 import org.jsoup.Connection
@@ -69,6 +70,10 @@ class SearchPageViewModel: BaseViewModel(){
 
     fun invisibleHintList(){
         hintRecyclerViewVisible.set(View.INVISIBLE)
+    }
+
+    fun popBack(view:View){
+        view.findNavController().popBackStack()
     }
 
     override fun bindData(viewDataBinding: ViewDataBinding, lifecycleOwner: LifecycleOwner) {

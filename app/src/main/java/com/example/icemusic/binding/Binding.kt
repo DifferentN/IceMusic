@@ -1,10 +1,12 @@
 package com.example.icemusic.binding
 
 import android.annotation.TargetApi
+import android.graphics.BitmapFactory
 import android.graphics.drawable.ColorDrawable
 import android.os.Build
 import android.util.Log
 import android.widget.ImageView
+import androidx.compose.ui.graphics.imageFromResource
 import androidx.databinding.BindingAdapter
 import androidx.databinding.BindingConversion
 import androidx.databinding.adapters.ListenerUtil
@@ -19,6 +21,13 @@ import com.squareup.picasso.Picasso
 val TAG = "Binding"
 @BindingConversion
 fun convertColorValueToDrawable(color: Int) = ColorDrawable(color)
+
+@BindingAdapter("android:drawableId")
+fun loadImageByDrawableId(imageView:ImageView,drawableId:Int){
+    var drawable = imageView.resources.getDrawable(drawableId,null)
+    imageView.background = drawable
+//    Picasso.get().load(drawableId).into(imageView)
+}
 
 @BindingAdapter("android:imageUrl")
 fun loadImage(imageView: ImageView, imageUrl: String?) {
