@@ -5,10 +5,7 @@ import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.ViewModelStoreOwner
 import com.example.icemusic.data.*
 import com.example.icemusic.viewModel.*
-import kotlinx.coroutines.Dispatchers
-import kotlinx.coroutines.GlobalScope
-import kotlinx.coroutines.delay
-import kotlinx.coroutines.launch
+import com.example.icemusic.viewModel.findPageVM.*
 import org.jsoup.Jsoup
 import org.jsoup.nodes.Document
 

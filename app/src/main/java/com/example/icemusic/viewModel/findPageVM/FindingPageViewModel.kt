@@ -1,15 +1,11 @@
-package com.example.icemusic.viewModel
+package com.example.icemusic.viewModel.findPageVM
 
 import androidx.databinding.ViewDataBinding
 import androidx.lifecycle.*
 import com.example.icemusic.R
-import com.example.icemusic.data.FindingPageData
-import com.example.icemusic.netWork.ObtainFindingPageDataWorker
-import kotlinx.coroutines.Dispatchers
-import kotlinx.coroutines.GlobalScope
-import kotlinx.coroutines.launch
+import com.example.icemusic.viewModel.BaseViewModel
 
-class FindingPageViewModel:BaseViewModel() {
+class FindingPageViewModel: BaseViewModel() {
 
     val viewModeList: MutableLiveData<MutableList<BaseViewModel>> by lazy {
         MutableLiveData<MutableList<BaseViewModel>>().also {

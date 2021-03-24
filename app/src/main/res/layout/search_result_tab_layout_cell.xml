@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <data>
+        <import type="com.example.icemusic.data.searchData.SearchResultTabData"/>
+        <variable
+            name="obj"
+            type="SearchResultTabData" />
+    </data>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="@dimen/search_result_tab_layout_cell_width"
+        android:layout_height="@dimen/search_result_tab_layout_cell_height">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/search_result_tab_layout_cell_text_view"
+            android:textSize="@dimen/search_result_tab_layout_cell_text_view_size"
+            android:text="@{obj.tabTitle}"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"/>
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</layout>

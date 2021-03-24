@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout>
+
+    <data>
+        <import type="com.example.icemusic.viewModel.searchPageVM.SearchPageViewModel"/>
+        <variable
+            name="obj"
+            type="com.example.icemusic.viewModel.searchPageVM.SearchPageViewModel" />
+    </data>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:app="http://schemas.android.com/apk/res-auto"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+        <ImageView
+            android:layout_width="@dimen/back_image_view_width"
+            android:layout_height="@dimen/back_image_view_height"
+            android:id="@+id/search_music_back_image_view"
+            android:layout_marginStart="@dimen/search_page_start_blank_width"
+            android:layout_marginEnd="@dimen/back_image_view_end_margin"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintEnd_toStartOf="@+id/search_music_edit_view"/>
+
+        <EditText
+            android:layout_width="0dp"
+            android:layout_height="@dimen/search_music_search_view_height"
+            android:id="@+id/search_music_edit_view"
+            android:layout_marginEnd="@dimen/search_page_end_blank_width"
+            android:hint="@string/search_page_search_view_hint_word"
+            android:text="@={obj.queryText}"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintStart_toEndOf="@+id/search_music_back_image_view"
+            app:layout_constraintEnd_toEndOf="parent"/>
+        <ImageView
+            android:layout_width="@dimen/delete_search_word_image_view_width"
+            android:layout_height="@dimen/delete_search_word_image_view_height"
+            android:id="@+id/delete_search_word_image_view"
+            android:layout_marginEnd="@dimen/delete_search_word_image_view_end_margin"
+            app:layout_constraintEnd_toEndOf="@+id/search_music_edit_view"
+            app:layout_constraintBottom_toBottomOf="@+id/search_music_edit_view"/>
+
+        <androidx.fragment.app.FragmentContainerView
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:id="@+id/search_music_page_fragment"
+            android:name="androidx.navigation.fragment.NavHostFragment"
+            android:layout_marginStart="@dimen/search_page_start_blank_width"
+            android:layout_marginEnd="@dimen/search_page_end_blank_width"
+            app:layout_constraintTop_toBottomOf="@+id/search_music_edit_view"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+
+            app:defaultNavHost="true"
+            app:navGraph = "@navigation/nav_search_exhibition"/>
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:id="@+id/search_page_hint_list_recycler_view"
+            android:layout_marginTop="@dimen/search_page_hint_list_top_margin"
+            android:visibility="@{obj.hintRecyclerViewVisible}"
+            app:layout_constraintStart_toStartOf="@+id/search_music_edit_view"
+            app:layout_constraintEnd_toEndOf="@+id/search_music_edit_view"
+            app:layout_constraintTop_toBottomOf="@+id/search_music_edit_view"/>
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</layout>

@@ -6,11 +6,8 @@ import android.view.ViewGroup
 import androidx.databinding.DataBindingUtil
 import androidx.databinding.ViewDataBinding
 import androidx.lifecycle.LifecycleOwner
-import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.RecyclerView
-import com.example.icemusic.R
 import com.example.icemusic.viewModel.BaseViewModel
-import com.example.icemusic.viewModel.FindingPageViewModel
 
 class FindingPageRecyclerViewAdapter(var lifecycleOwner:LifecycleOwner) :RecyclerView.Adapter<FindingPageRecyclerViewAdapter.ViewHolder>(){
     val TAG = "FindingPageAdapter"

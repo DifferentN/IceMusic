@@ -8,7 +8,7 @@ import androidx.lifecycle.ViewModel
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.icemusic.R
-import com.example.icemusic.adapter.recyclerAdapter.BaseFindingPageAdapter
+import com.example.icemusic.adapter.recyclerAdapter.base.BaseRecyclerViewAdapter
 import com.example.icemusic.itemDecoration.StartEndDecoration
 
 open abstract class BaseViewModel : ViewModel() {
@@ -21,12 +21,12 @@ open abstract class BaseViewModel : ViewModel() {
      * @param lifecycleOwner LifecycleOwner
      * @param baseViewModelList MutableLiveData<MutableList<out BaseViewModel>>
      */
-    fun baseBindRecyclerView(
+    open fun baseBindRecyclerView(
         recyclerView:RecyclerView,
         lifecycleOwner: LifecycleOwner,
         baseViewModelList: MutableLiveData<out MutableList<out BaseViewModel>>
     ){
-        var adapter = BaseFindingPageAdapter(lifecycleOwner)
+        var adapter = BaseRecyclerViewAdapter(lifecycleOwner)
         recyclerView.adapter = adapter
 
         var layoutManager = LinearLayoutManager(recyclerView.context)

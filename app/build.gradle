@@ -2,6 +2,7 @@ plugins {
     id 'com.android.application'
     id 'kotlin-android'
     id 'kotlin-kapt'
+    id 'androidx.navigation.safeargs.kotlin'
 }
 
 android {
@@ -63,6 +64,13 @@ dependencies {
 
     // optional - ReactiveStreams support for LiveData
     implementation "androidx.lifecycle:lifecycle-reactivestreams-ktx:$lifecycle_version"
+
+    //navigation
+    implementation "androidx.navigation:navigation-fragment-ktx:$nav_version"
+    implementation "androidx.navigation:navigation-ui-ktx:$nav_version"
+    implementation "androidx.navigation:navigation-dynamic-features-fragment:$nav_version"
+    implementation "androidx.navigation:navigation-compose:1.0.0-alpha07"
+
     //viewpager2
     implementation "androidx.viewpager2:viewpager2:1.0.0"
 
@@ -82,6 +90,15 @@ dependencies {
     //Glide
     implementation 'com.github.bumptech.glide:glide:4.12.0'
 
+    //EventBus
+    implementation 'org.greenrobot:eventbus:3.2.0'
+
+    //okHttp3
+    implementation "com.squareup.okhttp3:okhttp:4.9.0"
+
+    //fasrjson
+    implementation 'com.alibaba:fastjson:1.2.70'
+
     implementation "org.jetbrains.kotlin:kotlin-stdlib:$kotlin_version"
     implementation 'androidx.core:core-ktx:1.2.0'
     implementation 'androidx.appcompat:appcompat:1.1.0'
@@ -90,6 +107,7 @@ dependencies {
     testImplementation 'junit:junit:4.+'
     androidTestImplementation 'androidx.test.ext:junit:1.1.1'
     androidTestImplementation 'androidx.test.espresso:espresso-core:3.2.0'
+    androidTestImplementation "androidx.navigation:navigation-testing:$nav_version"
     // optional - Test helpers for LiveData
     testImplementation "androidx.arch.core:core-testing:$arch_version"
 }

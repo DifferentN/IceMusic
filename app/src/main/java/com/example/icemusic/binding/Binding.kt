@@ -8,6 +8,7 @@ import android.widget.ImageView
 import androidx.databinding.BindingAdapter
 import androidx.databinding.BindingConversion
 import androidx.databinding.adapters.ListenerUtil
+import androidx.recyclerview.widget.RecyclerView
 import androidx.viewpager.widget.ViewPager
 import androidx.viewpager2.adapter.FragmentStateAdapter
 import androidx.viewpager2.widget.ViewPager2
@@ -93,5 +94,31 @@ fun setOnPageChangeListener(viewPager2: ViewPager2, pageSelected: OnPageSelected
     }
     if (newListener != null) {
         viewPager2.registerOnPageChangeCallback(newListener)
+    }
+}
+
+@TargetApi(Build.VERSION_CODES.HONEYCOMB_MR1)
+interface OnScrollStateChanged {
+    fun onScrollStateChanged(recyclerView: RecyclerView, newState: Int)
+}
+
+@BindingAdapter("android:onScrollStateChanged")
+fun setOnScrollStateChangeListener(recyclerView: RecyclerView, stateChange: OnScrollStateChanged) {
+    var newListener: RecyclerView.OnScrollListener?
+    newListener = if (stateChange == null) {
+        null
+    } else {
+        object : RecyclerView.OnScrollListener() {
+            override fun onScrollStateChanged(recyclerView: RecyclerView, newState: Int) {
+                stateChange.onScrollStateChanged(recyclerView,newState)
+            }
+        }
+    }
+    var oldListener = ListenerUtil.trackListener(recyclerView, newListener, R.id.onScrollStateChanged)
+    if (oldListener != null) {
+        recyclerView.removeOnScrollListener(oldListener)
+    }
+    if (newListener != null) {
+        recyclerView.addOnScrollListener(newListener)
     }
 }

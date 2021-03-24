@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:bind="http://schemas.android.com/apk/res-auto">
+
+    <data>
+        <variable
+            name="tabLayoutViewModel"
+            type="com.example.icemusic.viewModel.findPageVM.TabLayoutViewModel" />
+
+        <variable
+            name="playSongBottomVM"
+            type="com.example.icemusic.viewModel.PlaySongBottomTabViewModel" />
+    </data>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <com.example.icemusic.view.OutsideLinearLayout
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:id="@+id/view_pager2_linear_layout"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintBottom_toTopOf="@+id/tabLayout">
+
+            <androidx.viewpager2.widget.ViewPager2
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:id="@+id/viewPager">
+            </androidx.viewpager2.widget.ViewPager2>
+
+        </com.example.icemusic.view.OutsideLinearLayout>
+
+        <include
+            layout="@layout/play_song_bottom_tab"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            app:layout_constraintBottom_toTopOf="@+id/tabLayout"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            bind:vm = "@{playSongBottomVM}"/>
+
+        <com.google.android.material.tabs.TabLayout
+            android:id="@+id/tabLayout"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:paddingBottom="@dimen/tabLayout_bottom_padding"
+            android:onTabSelected="@{(tab)->tabLayoutViewModel.tabSelected(tab)}"
+            android:onTabUnselected="@{tabLayoutViewModel::tabUnSelected}"
+            app:tabIndicatorHeight="0dp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/view_pager2_linear_layout"
+            app:layout_constraintBottom_toBottomOf="parent" />
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</layout>

@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+    <data>
+        <import type="com.example.icemusic.viewModel.searchPageVM.SearchHintNormalCellVM"/>
+        <variable
+            name="obj"
+            type="String" />
+
+        <variable
+            name="vm"
+            type="SearchHintNormalCellVM" />
+    </data>
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/search_hint_normal_cell_height"
+        android:onClick="@{vm::sendSearchHintWord}">
+
+        <ImageView
+            android:layout_width="@dimen/search_hint_normal_cell_image_view_width"
+            android:layout_height="@dimen/search_hint_normal_cell_image_view_height"
+            android:id="@+id/search_hint_normal_cell_image_view"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintBottom_toBottomOf="parent"/>
+
+        <TextView
+            android:layout_width="0dp"
+            android:layout_height="@dimen/search_hint_normal_cell_text_view_height"
+            android:id="@+id/search_hint_normal_cell_text_view"
+            android:textSize="@dimen/search_hint_normal_cell_text_view_text_size"
+            android:layout_marginStart="@dimen/search_hint_normal_cell_text_view_start_margin"
+            android:text="@{obj}"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintStart_toEndOf="@+id/search_hint_normal_cell_image_view"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintBottom_toBottomOf="parent"/>
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</layout>

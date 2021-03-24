@@ -1,4 +1,4 @@
-package com.example.icemusic.viewModel
+package com.example.icemusic.viewModel.findPageVM
 
 import android.util.Log
 import androidx.databinding.ViewDataBinding
@@ -7,9 +7,10 @@ import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.Observer
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.icemusic.R
-import com.example.icemusic.adapter.recyclerAdapter.BaseFindingPageAdapter
+import com.example.icemusic.adapter.recyclerAdapter.base.BaseRecyclerViewAdapter
 import com.example.icemusic.databinding.RecommendSongListBinding
 import com.example.icemusic.itemDecoration.StartEndDecoration
+import com.example.icemusic.viewModel.BaseViewModel
 
 class RecommendSongListViewModel: BaseViewModel() {
 
@@ -31,7 +32,7 @@ class RecommendSongListViewModel: BaseViewModel() {
                 return@let
             }
             var recyclerView = recommendSongListBinding.recommendSongRecyclerView
-            var adapter = BaseFindingPageAdapter(lifecycleOwner)
+            var adapter = BaseRecyclerViewAdapter(lifecycleOwner)
             recyclerView.adapter = adapter
 
             var layoutManager = LinearLayoutManager(recyclerView.context)

@@ -1,10 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
 <layout xmlns:android="http://schemas.android.com/apk/res/android" >
     <data>
-        <import type="com.example.icemusic.viewModel.TypeEntryListViewModel"/>
+        <import type="com.example.icemusic.viewModel.findPageVM.TypeEntryListViewModel"/>
         <variable
             name="obj"
-            type="TypeEntryListViewModel" />
+            type="com.example.icemusic.viewModel.findPageVM.TypeEntryListViewModel" />
     </data>
 
     <com.example.icemusic.view.SmallLinearLayout

@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <data>
+        <variable
+            name="obj"
+            type="String" />
+
+        <variable
+            name="vm"
+            type="com.example.icemusic.viewModel.searchPageVM.SearchHintHeadCellVM" />
+    </data>
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/search_hint_normal_cell_height"
+        android:textSize="@dimen/search_hint_normal_cell_text_view_text_size"
+        android:id="@+id/search_hint_head_cell_text_view"
+        android:onClick="@{vm::sendSearchHintWord}"
+        android:text="@{obj}"/>
+
+</layout>

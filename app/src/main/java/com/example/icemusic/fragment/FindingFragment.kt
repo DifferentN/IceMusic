@@ -6,19 +6,18 @@ import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.LinearLayout
 import androidx.fragment.app.Fragment
-import androidx.fragment.app.viewModels
 import androidx.lifecycle.Observer
-import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.ViewModelStoreOwner
+import androidx.navigation.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.icemusic.R
 import com.example.icemusic.adapter.recyclerAdapter.FindingPageRecyclerViewAdapter
 import com.example.icemusic.databinding.FindingPageBinding
 import com.example.icemusic.netWork.ObtainFindingPageDataWorker
-import com.example.icemusic.viewModel.AdvertisementViewModel
-import com.example.icemusic.viewModel.FindingPageViewModel
+import com.example.icemusic.viewModel.findPageVM.FindingPageViewModel
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.GlobalScope
 import kotlinx.coroutines.launch
@@ -29,7 +28,7 @@ class FindingFragment() : Fragment() {
 
     lateinit var fragmentBinding: FindingPageBinding
 
-    val findingPageViewModel:FindingPageViewModel by lazy{
+    val findingPageViewModel: FindingPageViewModel by lazy{
         var findingPageViewModel = createViewModel()
         loadPageViewMode(this,findingPageViewModel)
         findingPageViewModel
@@ -63,8 +62,14 @@ class FindingFragment() : Fragment() {
             Log.i(TAG,"data change")
         })
 //        loadPageViewMode(this)
+        addSearchView(fragmentBinding.findingHeadTab.headMediumParent)
+
+        fragmentBinding.findingHeadTab.headMediumParent.setOnClickListener {
+            val action = MainPageFragmentDirections.actionMainPageFragmentToNavSearchMusic()
+            it.findNavController().navigate(action)
+        }
     }
-    fun createViewModel():FindingPageViewModel{
+    fun createViewModel(): FindingPageViewModel {
         var viewModelProvider = ViewModelProvider(this)
         var findingViewModel = viewModelProvider.get(FindingPageViewModel::class.java)
 //        findingViewModel.viewModeList.value?.add(viewModelProvider.get(AdvertisementViewModel::class.java))
@@ -81,6 +86,15 @@ class FindingFragment() : Fragment() {
                 findingPageViewModel.viewModeList.value = viewModelList
             }
         }
+    }
+
+    fun addSearchView(mediumLayout:LinearLayout){
+        var layoutParams = LinearLayout.LayoutParams(LinearLayout.LayoutParams.MATCH_PARENT,
+            LinearLayout.LayoutParams.MATCH_PARENT)
+        var layoutInflater = LayoutInflater.from(this.requireContext())
+        var searchTab = layoutInflater.inflate(R.layout.search_tab,mediumLayout,false)
+        searchTab.layoutParams = layoutParams
+        mediumLayout.addView(searchTab)
     }
 
     companion object{

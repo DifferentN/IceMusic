@@ -8,7 +8,7 @@ import androidx.viewpager2.adapter.FragmentStateAdapter
 import com.example.icemusic.R
 import com.example.icemusic.fragment.FindingFragment
 
-class FindingFragmentAdapter(var colorList:List<Int>, fragmentActivity: FragmentActivity) : FragmentStateAdapter(fragmentActivity) {
+class FindingFragmentAdapter(var colorList:List<Int>, fragment: Fragment) : FragmentStateAdapter(fragment) {
     override fun getItemCount(): Int {
         return 5
     }

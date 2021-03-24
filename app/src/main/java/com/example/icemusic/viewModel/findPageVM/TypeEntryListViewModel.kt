@@ -1,4 +1,4 @@
-package com.example.icemusic.viewModel
+package com.example.icemusic.viewModel.findPageVM
 
 import android.util.Log
 import androidx.databinding.ViewDataBinding
@@ -10,8 +10,9 @@ import com.example.icemusic.R
 import com.example.icemusic.adapter.recyclerAdapter.TypeEntryListAdapter
 import com.example.icemusic.databinding.TypeEntryListBinding
 import com.example.icemusic.itemDecoration.StartEndDecoration
+import com.example.icemusic.viewModel.BaseViewModel
 
-class TypeEntryListViewModel:BaseViewModel() {
+class TypeEntryListViewModel: BaseViewModel() {
     val TAG = "TypeEntryListViewModel"
 
     val typeEntryCellList:MutableLiveData<MutableList<TypeEntryCellViewModel>> by lazy {

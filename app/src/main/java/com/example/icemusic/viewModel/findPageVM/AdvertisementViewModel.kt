@@ -1,4 +1,4 @@
-package com.example.icemusic.viewModel
+package com.example.icemusic.viewModel.findPageVM
 
 import android.graphics.Color
 import androidx.databinding.ViewDataBinding
@@ -7,7 +7,6 @@ import androidx.lifecycle.LifecycleOwner
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.Observer
 import androidx.recyclerview.widget.LinearLayoutManager
-import androidx.viewpager.widget.ViewPager
 import androidx.viewpager2.widget.ViewPager2
 import com.example.icemusic.BR
 import com.example.icemusic.R
@@ -16,6 +15,7 @@ import com.example.icemusic.adapter.recyclerAdapter.AdIndicatorAdapter
 import com.example.icemusic.data.AdIndicatorData
 import com.example.icemusic.data.AdvertData
 import com.example.icemusic.databinding.AdPageListBinding
+import com.example.icemusic.viewModel.BaseViewModel
 import kotlinx.coroutines.*
 
 class AdvertisementViewModel : BaseViewModel() {

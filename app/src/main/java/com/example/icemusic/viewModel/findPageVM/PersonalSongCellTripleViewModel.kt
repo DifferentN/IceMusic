@@ -1,13 +1,13 @@
-package com.example.icemusic.viewModel
+package com.example.icemusic.viewModel.findPageVM
 
 import androidx.databinding.ViewDataBinding
 import androidx.lifecycle.LifecycleOwner
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.Observer
-import androidx.lifecycle.ViewModel
 import com.example.icemusic.BR
 import com.example.icemusic.R
 import com.example.icemusic.data.PersonalSongCellData
+import com.example.icemusic.viewModel.BaseViewModel
 
 class PersonalSongCellTripleViewModel : BaseViewModel() {
 

@@ -1,8 +1,6 @@
-package com.example.icemusic.adapter.recyclerAdapter
+package com.example.icemusic.adapter.recyclerAdapter.base
 
-import android.util.Log
 import android.view.LayoutInflater
-import android.view.View
 import android.view.ViewGroup
 import androidx.databinding.DataBindingUtil
 import androidx.databinding.ViewDataBinding
@@ -10,8 +8,8 @@ import androidx.lifecycle.LifecycleOwner
 import androidx.recyclerview.widget.RecyclerView
 import com.example.icemusic.viewModel.BaseViewModel
 
-class BaseFindingPageAdapter(val lifecycleOwner:LifecycleOwner):
-    RecyclerView.Adapter<BaseFindingPageAdapter.BaseFindingPageViewHolder>() {
+class BaseRecyclerViewAdapter(val lifecycleOwner:LifecycleOwner):
+    RecyclerView.Adapter<BaseRecyclerViewAdapter.BaseFindingPageViewHolder>() {
 
     var viewModelList:MutableList<out BaseViewModel>? = null
 

@@ -6,11 +6,8 @@ import androidx.databinding.DataBindingUtil
 import androidx.databinding.ViewDataBinding
 import androidx.lifecycle.LifecycleOwner
 import androidx.recyclerview.widget.RecyclerView
-import com.example.icemusic.BR
 import com.example.icemusic.R
-import com.example.icemusic.data.TypeEntryCellData
 import com.example.icemusic.viewModel.BaseViewModel
-import com.example.icemusic.viewModel.TypeEntryCellViewModel
 
 class TypeEntryListAdapter(var lifecycleOwner: LifecycleOwner): RecyclerView.Adapter<TypeEntryListAdapter.TypeEntryListViewHolder>(){
 

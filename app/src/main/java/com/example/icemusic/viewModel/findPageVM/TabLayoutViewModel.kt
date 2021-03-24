@@ -1,11 +1,10 @@
-package com.example.icemusic.viewModel
+package com.example.icemusic.viewModel.findPageVM
 
 import androidx.databinding.ObservableBoolean
 import androidx.databinding.ViewDataBinding
 import androidx.lifecycle.LifecycleOwner
-import androidx.lifecycle.ViewModel
-import com.example.icemusic.R
 import com.example.icemusic.data.TabCellData
+import com.example.icemusic.viewModel.BaseViewModel
 import com.google.android.material.tabs.TabLayout
 
 class TabLayoutViewModel: BaseViewModel(){

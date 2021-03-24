@@ -1,12 +1,18 @@
 <?xml version="1.0" encoding="utf-8"?>
 <layout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools">
+    xmlns:tools="http://schemas.android.com/tools"
+    xmlns:bind="http://schemas.android.com/apk/res-auto">
 
     <data>
+        <import type="com.example.icemusic.viewModel.PlaySongBottomTabViewModel"/>
         <variable
-            name="tabLayoutViewModel"
-            type="com.example.icemusic.viewModel.TabLayoutViewModel" />
+            name="playSongBottomViewModel"
+            type="PlaySongBottomTabViewModel" />
+
+        <variable
+            name="playSongBottomTabVisible"
+            type="androidx.databinding.ObservableInt" />
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout
@@ -14,36 +20,27 @@
         android:layout_height="match_parent"
         tools:context=".MainActivity">
 
-        <com.example.icemusic.view.OutsideLinearLayout
+        <androidx.fragment.app.FragmentContainerView
             android:layout_width="0dp"
             android:layout_height="0dp"
-            android:id="@+id/view_pager2_linear_layout"
+            android:name="androidx.navigation.fragment.NavHostFragment"
+            android:id="@+id/main_page_fragment"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintBottom_toTopOf="@+id/tabLayout">
 
-            <androidx.viewpager2.widget.ViewPager2
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:id="@+id/viewPager">
-            </androidx.viewpager2.widget.ViewPager2>
+            app:defaultNavHost="true"
+            app:navGraph = "@navigation/nav_main_page"/>
 
-        </com.example.icemusic.view.OutsideLinearLayout>
-
-
-
-        <com.google.android.material.tabs.TabLayout
-            android:id="@+id/tabLayout"
+        <include
+            layout="@layout/play_song_bottom_tab"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:paddingBottom="@dimen/tabLayout_bottom_padding"
-            android:onTabSelected="@{(tab)->tabLayoutViewModel.tabSelected(tab)}"
-            android:onTabUnselected="@{tabLayoutViewModel::tabUnSelected}"
-            app:tabIndicatorHeight="0dp"
+            android:visibility="@{playSongBottomTabVisible}"
+            app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/view_pager2_linear_layout"
-            app:layout_constraintBottom_toBottomOf="parent" />
+            bind:vm="@{playSongBottomViewModel}"/>
     </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>

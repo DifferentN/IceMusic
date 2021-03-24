@@ -7,19 +7,21 @@
         android:layout_height="@dimen/head_tab_height">
 
         <ImageView
-            android:layout_width="wrap_content"
-            android:layout_height="match_parent"
+            android:layout_width="@dimen/head_tab_left_image_width"
+            android:layout_height="@dimen/head_tab_left_image_height"
             android:id="@+id/head_extension_image"
+            android:background="@color/gray"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toStartOf="@+id/head_medium_parent"/>
 
         <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
+            android:layout_width="@dimen/head_tab_medium_width"
+            android:layout_height="wrap_content"
             android:id="@+id/head_medium_parent"
             android:orientation="horizontal"
+            android:layout_marginStart="@dimen/head_tab_medium_start_margin"
             app:layout_constraintStart_toEndOf="@+id/head_extension_image"
             app:layout_constraintTop_toTopOf="parent"
             app:layout_constraintBottom_toBottomOf="parent"

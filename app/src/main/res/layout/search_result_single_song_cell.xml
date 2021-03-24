@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <data>
+        <import type="com.example.icemusic.data.searchData.SearchSingleSongData"/>
+        <import type="com.example.icemusic.viewModel.searchPageVM.SingleSongCellVM"/>
+        <variable
+            name="songData"
+            type="SearchSingleSongData" />
+
+        <variable
+            name="songVM"
+            type="SingleSongCellVM" />
+
+    </data>
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/single_song_cell_height"
+        android:onClick="@{songVM.playSong}">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/single_song_cell_song"
+            android:layout_marginTop="@dimen/single_song_cell_song_text_view_top_margin"
+            android:layout_marginBottom="@dimen/single_song_cell_song_text_view_bottom_margin"
+            android:textSize="@dimen/single_song_cell_song_text_view_size"
+            android:text="@{songData.songName}"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintBottom_toTopOf="@+id/single_song_cell_singer"/>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/single_song_cell_singer"
+            android:layout_marginBottom="@dimen/single_song_cell_singer_text_view_bottom_margin"
+            android:textSize="@dimen/single_song_cell_singer_text_view_size"
+            android:text="@{songData.singerName}"
+            app:layout_constraintTop_toBottomOf="@+id/single_song_cell_song"
+            app:layout_constraintStart_toStartOf="parent"/>
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</layout>

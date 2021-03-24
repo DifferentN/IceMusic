@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <data>
+        <import type="com.example.icemusic.viewModel.PlaySongBottomTabViewModel"/>
+
+        <variable
+            name="vm"
+            type="PlaySongBottomTabViewModel" />
+    </data>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/white">
+
+        <ImageView
+            android:layout_width="@dimen/play_song_tab_song_image_width"
+            android:layout_height="@dimen/play_song_tab_song_image_height"
+            android:id="@+id/play_song_tab_song_image"
+            android:layout_marginBottom="@dimen/play_song_tab_song_image_bottom_margin"
+            android:layout_marginStart="@dimen/play_song_tab_song_image_start_margin"
+            android:layout_marginEnd="@dimen/play_song_tab_song_image_end_margin"
+            android:imageUrl="@{vm.songData.imageUrl}"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"/>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textSize="@dimen/play_song_tab_song_name_text_size"
+            android:id="@+id/play_song_tab_song_name"
+            android:text="@{vm.songData.songName}"
+            android:layout_marginStart="@dimen/play_song_tab_song_name_start_margin"
+            app:layout_constraintStart_toEndOf="@+id/play_song_tab_song_image"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintBottom_toBottomOf="parent"/>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textSize="@dimen/play_song_tab_artist_name_text_size"
+            android:id="@+id/play_song_tab_artist_name"
+            android:text="@{vm.songData.singerName}"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toEndOf="@+id/play_song_tab_song_name"/>
+
+        <ImageView
+            android:layout_width="@dimen/play_song_tab_switch_width"
+            android:layout_height="@dimen/play_song_tab_switch_height"
+            android:id="@+id/play_song_tab_switch"
+            android:layout_marginEnd="@dimen/play_song_tab_switch_end_margin"
+            android:background="@{vm.playSwitchFlag?@color/green:@color/gray}"
+            android:onClick="@{vm::switchSong}"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"/>
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</layout>

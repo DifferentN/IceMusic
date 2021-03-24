@@ -7,8 +7,8 @@ import androidx.core.view.marginEnd
 import androidx.core.view.marginStart
 import androidx.recyclerview.widget.RecyclerView
 
-class StartEndDecoration(val startBlankWidth:Int, val endBlankWidth:Int) : RecyclerView.ItemDecoration() {
-    val TAG = "StartEndDecoration"
+open class StartEndDecoration(val startBlankWidth:Int, val endBlankWidth:Int) : RecyclerView.ItemDecoration() {
+    open var TAG = "StartEndDecoration"
 
     override fun getItemOffsets(
         outRect: Rect,
@@ -24,12 +24,24 @@ class StartEndDecoration(val startBlankWidth:Int, val endBlankWidth:Int) : Recyc
             setEndBlank(outRect,view)
         }
     }
-    fun setStartBlank(outRect: Rect,view: View){
+
+    /**
+     *
+     * @param outRect Rect
+     * @param view View 第一个view
+     */
+    open fun setStartBlank(outRect: Rect,view: View){
         var startOffset = startBlankWidth - view.marginStart
         outRect.left = startOffset
 //        Log.i(TAG,"left startOffset: "+startOffset)
     }
-    fun setEndBlank(outRect: Rect,view: View){
+
+    /**
+     *
+     * @param outRect Rect
+     * @param view View 最后一个view
+     */
+    open fun setEndBlank(outRect: Rect,view: View){
         var endOffset = endBlankWidth - view.marginEnd
         outRect.right = endOffset
 //        Log.i(TAG,"right endOffset: "+endOffset)

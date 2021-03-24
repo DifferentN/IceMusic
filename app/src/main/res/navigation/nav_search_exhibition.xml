@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto" android:id="@+id/nav_search_exhibition"
+    app:startDestination="@id/searchExhibitionFragment">
+
+    <fragment
+        android:id="@+id/searchExhibitionFragment"
+        android:name="com.example.icemusic.fragment.searchFragment.SearchExhibitionFragment"
+        android:label="SearchExhibitionFragment" >
+        <action
+            android:id="@+id/action_searchExhibitionFragment_to_searchResultFragment"
+            app:destination="@id/searchResultFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/searchResultFragment"
+        android:name="com.example.icemusic.fragment.searchFragment.SearchResultFragment"
+        android:label="SearchResultFragment" >
+        <argument
+            android:name="searchWord"
+            app:argType="string" />
+    </fragment>
+</navigation>

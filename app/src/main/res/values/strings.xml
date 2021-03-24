@@ -9,4 +9,14 @@
 
     //发现页面私人定制
     <string name="personal_songList_title">私人定制</string>
+
+    //发现页面搜索词
+    <string name="search_tab_word">搜索音乐</string>
+
+    //搜索页面提示词
+    <string name="search_page_search_view_hint_word">搜索音乐</string>
+
+    //导航图标签
+    //首页标签
+    <string name="nav_label_main_page_fragment">MainPageFragment</string>
 </resources>

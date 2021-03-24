@@ -1,10 +1,11 @@
-package com.example.icemusic.viewModel
+package com.example.icemusic.viewModel.findPageVM
 
 import androidx.databinding.ViewDataBinding
 import androidx.lifecycle.LifecycleOwner
 import com.example.icemusic.BR
 import com.example.icemusic.R
 import com.example.icemusic.data.RecommendSongCellData
+import com.example.icemusic.viewModel.BaseViewModel
 
 class RecommendSongCellViewModel : BaseViewModel() {
 

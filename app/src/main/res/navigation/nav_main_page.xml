@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/nav_discover_page"
+    app:startDestination="@id/mainPageFragment">
+    <fragment
+        android:id="@+id/mainPageFragment"
+        android:name="com.example.icemusic.fragment.MainPageFragment"
+        android:label="@string/nav_label_main_page_fragment" >
+        <action
+            android:id="@+id/action_mainPageFragment_to_nav_search_music"
+            app:destination="@id/nav_search_music" />
+    </fragment>
+    <include app:graph="@navigation/nav_search_page" />
+</navigation>
