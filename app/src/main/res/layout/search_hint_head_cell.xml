@@ -16,7 +16,7 @@
         android:layout_height="@dimen/search_hint_normal_cell_height"
         android:textSize="@dimen/search_hint_normal_cell_text_view_text_size"
         android:id="@+id/search_hint_head_cell_text_view"
-        android:onClick="@{vm::sendSearchHintWord}"
+        android:onClick="@{(view)->vm.sendSearchHintWord(view)}"
         android:text="@{obj}"/>
 
 </layout>

@@ -10,4 +10,5 @@
     <color name="blue">#FF0000FF</color>
     <color name="gray">#FF888888</color>
     <color name="green">#FF00FF00</color>
+    <color name="searchHistoryBgColor">#F6E7E7</color>
 </resources>

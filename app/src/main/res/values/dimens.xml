@@ -142,5 +142,19 @@
     <dimen name="single_song_cell_singer_text_view_size">12sp</dimen>
     <dimen name="single_song_cell_height">50dp</dimen>
 
+    //搜索展示页面
+
+    //历史搜索词
+    <dimen name="search_history_word_height">16dp</dimen>
+    <dimen name="search_history_word_corner_radius">8dp</dimen>
+    <dimen name="search_history_song_word_size">12sp</dimen>
+    <dimen name="search_history_song_word_height">16dp</dimen>
+    <dimen name="search_history_song_text_view_padding_horizontal">6dp</dimen>
+    <dimen name="search_history_word_end_margin">10dp</dimen>
+    <dimen name="search_history_song_list_height">40dp</dimen>
+    <dimen name="search_history_song_list_fade_width">30dp</dimen>
+    <dimen name="search_history_song_delete_image_width">30dp</dimen>
+    <dimen name="search_history_song_delete_image_height">30dp</dimen>
+    <dimen name="search_history_song_item_medium_blank">8dp</dimen>
 
 </resources>

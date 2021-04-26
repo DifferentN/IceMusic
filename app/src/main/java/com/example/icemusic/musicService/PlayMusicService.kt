@@ -8,6 +8,7 @@ class PlayMusicService {
     fun obtainMusic(){
         var url = "https://link.hhtjim.com/163/5146554.mp3"
 //        url = "https://www.baidu.com/"
+        url = "http://jsap.attakids.com/?url=https://v.qq.com/x/cover/mzc00200kqecmvk.html"
         var client = OkHttpClient()
         var request = Request.Builder()
             .url(url)
@@ -21,7 +22,7 @@ class PlayMusicService {
 //                print("body: "+response.body.toString())
         var bufferedReader = BufferedReader(response.body!!.charStream())
 //                print("line: "+bufferedReader.readLine())
-//        var str = bufferedReader.lineSequence().joinToString()
-//        print(str)
+        var str = bufferedReader.lineSequence().joinToString()
+        print(str)
     }
 }

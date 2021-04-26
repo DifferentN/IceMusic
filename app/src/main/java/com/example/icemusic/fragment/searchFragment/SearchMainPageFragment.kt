@@ -16,7 +16,11 @@ import com.example.icemusic.adapter.recyclerAdapter.base.BaseRecyclerViewAdapter
 import com.example.icemusic.data.eventBus.SearchChangeEvent
 import com.example.icemusic.data.eventBus.SearchHintEvent
 import com.example.icemusic.databinding.SearchMainPageBinding
+import com.example.icemusic.db.MusicDatabaseInstance
+import com.example.icemusic.db.entity.SearchHistorySong
 import com.example.icemusic.viewModel.searchPageVM.SearchPageViewModel
+import kotlinx.coroutines.GlobalScope
+import kotlinx.coroutines.launch
 import org.greenrobot.eventbus.EventBus
 import org.greenrobot.eventbus.Subscribe
 import org.greenrobot.eventbus.ThreadMode
@@ -77,6 +81,12 @@ class SearchMainPageFragment:Fragment() {
             EventBus.getDefault().post(SearchChangeEvent(searchWord))
         }
 
+        //添加搜索记录到数据库
+        GlobalScope.launch {
+            var db = MusicDatabaseInstance.getInstance(requireContext().applicationContext)
+            var searchSong = SearchHistorySong(searchHintEvent.searchWord,-1)
+            db.searchHistorySongDao().insertSearchHistorySong(searchSong)
+        }
 
     }
 }

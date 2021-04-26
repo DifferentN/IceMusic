@@ -12,6 +12,8 @@ import com.example.icemusic.data.searchData.SearchResultTabData
 import com.example.icemusic.databinding.SearchResultBinding
 import com.example.icemusic.databinding.SearchResultTabLayoutCellBinding
 import com.example.icemusic.databinding.TabCellViewBinding
+import com.example.icemusic.db.MusicDatabaseInstance
+import com.example.icemusic.db.entity.SearchHistorySong
 import com.example.icemusic.viewModel.searchPageVM.SearchResultContentVM
 import com.example.icemusic.viewModel.searchPageVM.SearchResultSingleSongVM
 import com.google.android.material.tabs.TabLayout

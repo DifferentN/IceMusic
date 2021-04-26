@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <data>
+        <variable
+            name="vm"
+            type="com.example.icemusic.viewModel.searchPageVM.SearchHistorySongListVM" />
+    </data>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/search_history_song_list_height"
+        android:paddingStart="@dimen/search_page_start_blank_width"
+        android:paddingEnd="@dimen/search_page_end_blank_width">
+
+        <TextView
+            android:id="@+id/history_word"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="@dimen/search_history_word_end_margin"
+            android:text="@string/search_history_word"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toStartOf="@+id/history_song_recycler_view"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <com.example.icemusic.view.GradientRecyclerView
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:id="@+id/history_song_recycler_view"
+            app:fade_width="@dimen/search_history_song_list_fade_width"
+            app:layout_constraintStart_toEndOf="@+id/history_word"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toStartOf="@+id/history_song_delete_image"/>
+
+        <ImageView
+            android:layout_width="@dimen/search_history_song_delete_image_width"
+            android:layout_height="@dimen/search_history_song_delete_image_height"
+            android:id="@+id/history_song_delete_image"
+            android:background="@android:drawable/ic_menu_delete"
+            android:onClick="@{(view)->vm.deleteSearchHistorySong(view)}"
+            app:layout_constraintStart_toEndOf="@+id/history_song_recycler_view"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintBottom_toBottomOf="parent"/>
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</layout>

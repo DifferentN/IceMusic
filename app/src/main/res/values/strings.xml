@@ -16,6 +16,8 @@
     //搜索页面提示词
     <string name="search_page_search_view_hint_word">搜索音乐</string>
 
+    <string name="search_history_word">历史</string>
+
     //导航图标签
     //首页标签
     <string name="nav_label_main_page_fragment">MainPageFragment</string>
