@@ -1,6 +1,7 @@
 package com.example.icemusic.db.DAO
 
 import androidx.lifecycle.LiveData
+import androidx.lifecycle.MutableLiveData
 import androidx.room.*
 import com.example.icemusic.db.entity.SearchHistorySong
 
@@ -8,7 +9,7 @@ import com.example.icemusic.db.entity.SearchHistorySong
 interface SearchHistorySongDAO {
 
     @Query("select * from searchhistorysong")
-    fun getSearchHistorySong(): LiveData<List<SearchHistorySong>>
+    fun getSearchHistorySong(): MutableList<SearchHistorySong>
 
     @Insert(onConflict = OnConflictStrategy.REPLACE)
     fun insertSearchHistorySong(song: SearchHistorySong)

@@ -3,6 +3,7 @@ package com.example.icemusic.viewModel.findPageVM
 import androidx.databinding.ObservableBoolean
 import androidx.databinding.ViewDataBinding
 import androidx.lifecycle.LifecycleOwner
+import androidx.lifecycle.ViewModelStoreOwner
 import com.example.icemusic.R
 import com.example.icemusic.data.TabCellData
 import com.example.icemusic.viewModel.BaseViewModel
@@ -25,7 +26,7 @@ class TabLayoutViewModel: BaseViewModel(){
             unSelectImage = R.drawable.user_group_unselect))
     }
 
-    override fun bindData(viewDataBinding: ViewDataBinding, lifecycleOwner: LifecycleOwner) {
+    override fun bindData(viewDataBinding: ViewDataBinding, lifecycleOwner: LifecycleOwner,viewModelStoreOwner: ViewModelStoreOwner) {
 
     }
     fun tabSelected(tab:TabLayout.Tab?){

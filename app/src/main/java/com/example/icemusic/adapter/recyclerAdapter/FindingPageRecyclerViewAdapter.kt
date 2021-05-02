@@ -38,8 +38,8 @@ class FindingPageRecyclerViewAdapter(var lifecycleOwner:LifecycleOwner) :Recycle
 
     class ViewHolder(val viewDataBinding:ViewDataBinding): RecyclerView.ViewHolder(viewDataBinding.root) {
         fun bind(baseViewModel:BaseViewModel,lifecycleOwner: LifecycleOwner){
-            baseViewModel.bindData(viewDataBinding,lifecycleOwner)
-            viewDataBinding.executePendingBindings()
+//            baseViewModel.bindData(viewDataBinding,lifecycleOwner)
+//            viewDataBinding.executePendingBindings()
         }
     }
 }

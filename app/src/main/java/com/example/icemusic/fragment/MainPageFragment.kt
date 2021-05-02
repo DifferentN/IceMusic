@@ -7,7 +7,6 @@ import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
 import com.example.icemusic.adapter.fragmentAdapter.FindingFragmentAdapter
-import com.example.icemusic.data.searchData.SearchSingleSongData
 import com.example.icemusic.databinding.MainPageBinding
 import com.example.icemusic.databinding.TabCellViewBinding
 import com.example.icemusic.viewModel.PlaySongBottomTabViewModel
@@ -15,6 +14,13 @@ import com.example.icemusic.viewModel.findPageVM.TabLayoutViewModel
 import com.google.android.material.tabs.TabLayout
 import com.google.android.material.tabs.TabLayoutMediator
 
+/**
+ * APP的主页，包含一个Viewpager实现不同页面(fragment)的切换
+ * @property tabLayoutViewModel TabLayoutViewModel
+ * @property findingFragmentAdapter FindingFragmentAdapter
+ * @property mainPageBinding MainPageBinding
+ * @property playSongBottomViewModel PlaySongBottomTabViewModel
+ */
 class MainPageFragment :Fragment(){
 
     private lateinit var tabLayoutViewModel: TabLayoutViewModel

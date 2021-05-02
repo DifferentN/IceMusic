@@ -11,6 +11,8 @@
     <androidx.constraintlayout.widget.ConstraintLayout
         xmlns:android="http://schemas.android.com/apk/res/android"
         xmlns:app="http://schemas.android.com/apk/res-auto"
+        android:focusable="true"
+        android:focusableInTouchMode="true"
         android:layout_width="match_parent"
         android:layout_height="match_parent">
         <ImageView
@@ -33,6 +35,7 @@
             android:layout_marginEnd="@dimen/search_page_end_blank_width"
             android:hint="@string/search_page_search_view_hint_word"
             android:text="@={obj.queryText}"
+            android:onFocusChange="@{obj::onEditTextFocusChangeListener}"
             app:layout_constraintTop_toTopOf="parent"
             app:layout_constraintStart_toEndOf="@+id/search_music_back_image_view"
             app:layout_constraintEnd_toEndOf="parent"/>

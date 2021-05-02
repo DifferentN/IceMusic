@@ -30,7 +30,7 @@ class TypeEntryListAdapter(var lifecycleOwner: LifecycleOwner): RecyclerView.Ada
 
     class TypeEntryListViewHolder(val binding:ViewDataBinding):RecyclerView.ViewHolder(binding.root){
         fun bindData(viewModel:BaseViewModel,lifecycleOwner: LifecycleOwner){
-            viewModel.bindData(binding,lifecycleOwner)
+//            viewModel.bindData(binding,lifecycleOwner)
         }
 
     }

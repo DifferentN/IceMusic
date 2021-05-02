@@ -3,9 +3,7 @@ package com.example.icemusic.viewModel.findPageVM
 import android.graphics.Color
 import androidx.databinding.ViewDataBinding
 import androidx.fragment.app.Fragment
-import androidx.lifecycle.LifecycleOwner
-import androidx.lifecycle.MutableLiveData
-import androidx.lifecycle.Observer
+import androidx.lifecycle.*
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.viewpager2.widget.ViewPager2
 import com.example.icemusic.BR
@@ -70,7 +68,25 @@ class AdvertisementViewModel : BaseViewModel() {
         adDataList.value = newadDataList
     }
 
-    override fun bindData(viewDataBinding: ViewDataBinding, lifecycleOwner: LifecycleOwner) {
+    override fun <Any> initialData(data: Any) {
+        data?.let {
+            var dataClazz = it::class.java
+            if(MutableList::class.java.isAssignableFrom(dataClazz)){
+                var list = data as MutableList<*>
+                if(!list.isEmpty()){
+                    var element = list[0]
+                    element?.let {
+                        var elementClazz = it::class.java
+                        if(AdvertData::class.java.isAssignableFrom(elementClazz)){
+                            adDataList.value = data as MutableList<AdvertData>
+                        }
+                    }
+                }
+            }
+        }
+    }
+
+    override fun bindData(viewDataBinding: ViewDataBinding, lifecycleOwner: LifecycleOwner, viewModelStoreOwner: ViewModelStoreOwner) {
         viewDataBinding.takeIf { it is AdPageListBinding }?.let {
             var adPageListBinding = it as AdPageListBinding
             if (lifecycleOwner !is Fragment) {
@@ -110,16 +126,17 @@ class AdvertisementViewModel : BaseViewModel() {
 
 
     fun loopShowAd(viewPager2: ViewPager2) {
-        GlobalScope.launch(Dispatchers.Default) {
-            while (true) {
-                delay(3000)
-                GlobalScope.launch(Dispatchers.Main) {
-                    if (viewPager2.currentItem >= (viewPager2.adapter?.itemCount ?: 0)-1) {
-                        viewPager2.currentItem = 0
-                    } else viewPager2.currentItem = viewPager2.currentItem + 1
+        viewModelScope.launch {
+            withContext(Dispatchers.Default){
+                while (true) {
+                    delay(3000)
+                    withContext(Dispatchers.Main) {
+                        if (viewPager2.currentItem >= (viewPager2.adapter?.itemCount ?: 0)-1) {
+                            viewPager2.currentItem = 0
+                        } else viewPager2.currentItem = viewPager2.currentItem + 1
+                    }
                 }
             }
-
         }
     }
 

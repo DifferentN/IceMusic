@@ -5,9 +5,10 @@ import androidx.databinding.ObservableBoolean
 import androidx.databinding.ObservableField
 import androidx.databinding.ViewDataBinding
 import androidx.lifecycle.LifecycleOwner
+import androidx.lifecycle.ViewModelStoreOwner
 import com.example.icemusic.R
 import com.example.icemusic.data.eventBus.PlaySongEvent
-import com.example.icemusic.data.searchData.SearchSingleSongData
+import com.example.icemusic.data.searchData.searchResultData.SearchSingleSongData
 import org.greenrobot.eventbus.EventBus
 
 class PlaySongBottomTabViewModel:BaseViewModel() {
@@ -25,7 +26,7 @@ class PlaySongBottomTabViewModel:BaseViewModel() {
         layoutId = R.layout.play_song_bottom_tab
     }
 
-    override fun bindData(viewDataBinding: ViewDataBinding, lifecycleOwner: LifecycleOwner) {
+    override fun bindData(viewDataBinding: ViewDataBinding, lifecycleOwner: LifecycleOwner,viewModelStoreOwner: ViewModelStoreOwner) {
         //放到MainActivity
     }
 

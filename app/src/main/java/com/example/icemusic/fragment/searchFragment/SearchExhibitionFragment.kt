@@ -14,13 +14,24 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.icemusic.adapter.recyclerAdapter.base.BaseRecyclerViewAdapter
 import com.example.icemusic.databinding.SearchExhibitionBinding
 import com.example.icemusic.viewModel.BaseViewModel
+import com.example.icemusic.viewModel.searchPageVM.SearchExhibitionViewModel
 import com.example.icemusic.viewModel.searchPageVM.SearchHistorySongListVM
 
+/**
+ * 搜索展示页面，展示搜索历史、最近热歌、各种分类
+ * @property searchExhibitionBinding SearchExhibitionBinding
+ * @property vmList MutableLiveData<MutableList<BaseViewModel>>
+ */
 class SearchExhibitionFragment:Fragment() {
 
     lateinit var searchExhibitionBinding: SearchExhibitionBinding
 
     var vmList:MutableLiveData<MutableList<BaseViewModel>> = MutableLiveData()
+
+    val searchExhibitionViewModel : SearchExhibitionViewModel by lazy {
+        var viewModel = ViewModelProvider(this).get(SearchExhibitionViewModel::class.java)
+        viewModel
+    }
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -36,19 +47,20 @@ class SearchExhibitionFragment:Fragment() {
 
         var recyclerView = searchExhibitionBinding.searchExhibitionRecyclerView
 
-        var adapter = BaseRecyclerViewAdapter(viewLifecycleOwner)
+        var adapter = BaseRecyclerViewAdapter(viewLifecycleOwner,this,
+            BaseRecyclerViewAdapter.NORMAL_BASE_VIEW_MODEL_CREATOR)
         recyclerView.adapter = adapter
 
         var linearManager = LinearLayoutManager(context)
         linearManager.orientation = LinearLayoutManager.VERTICAL
         recyclerView.layoutManager = linearManager
 
-        vmList.observe(viewLifecycleOwner, Observer {
-            adapter.viewModelList = it
+        searchExhibitionViewModel.exhibitionDataList.observe(viewLifecycleOwner, Observer {
+            adapter.dataList = it
             adapter.notifyDataSetChanged()
         })
 
-        loadVMList()
+        searchExhibitionViewModel.loadDataWithContext(requireContext())
 
     }
 

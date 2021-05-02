@@ -5,10 +5,13 @@ import android.graphics.BitmapFactory
 import android.graphics.drawable.ColorDrawable
 import android.os.Build
 import android.util.Log
+import android.view.View
+import android.widget.EditText
 import android.widget.ImageView
 import androidx.compose.ui.graphics.imageFromResource
 import androidx.databinding.BindingAdapter
 import androidx.databinding.BindingConversion
+import androidx.databinding.InverseBindingAdapter
 import androidx.databinding.adapters.ListenerUtil
 import androidx.recyclerview.widget.RecyclerView
 import androidx.viewpager.widget.ViewPager
@@ -129,5 +132,26 @@ fun setOnScrollStateChangeListener(recyclerView: RecyclerView, stateChange: OnSc
     }
     if (newListener != null) {
         recyclerView.addOnScrollListener(newListener)
+    }
+}
+
+@TargetApi(Build.VERSION_CODES.HONEYCOMB_MR1)
+interface OnEditTextFocusChange {
+    fun onEditTextFocusChange(view: View?, hasFocus: Boolean)
+}
+
+@BindingAdapter(value = ["android:onFocusChange"],requireAll = false)
+fun setEditTextFocusChangeListener(editText: EditText,change: OnEditTextFocusChange){
+    var newListener: View.OnFocusChangeListener? = if(change==null){
+        null
+    }else{
+        object :View.OnFocusChangeListener{
+            override fun onFocusChange(v: View?, hasFocus: Boolean) {
+                change.onEditTextFocusChange(v,hasFocus)
+            }
+        }
+    }
+    if(newListener!=null){
+        editText.onFocusChangeListener = newListener
     }
 }

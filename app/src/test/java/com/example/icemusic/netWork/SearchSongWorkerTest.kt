@@ -12,10 +12,9 @@ class SearchSongWorkerTest : TestCase() {
     fun before(){
         searchSongWorker = SearchSongWorker()
     }
-
     fun testSearchSongData() {
         searchSongWorker = SearchSongWorker()
-//        searchSongWorker?.searchSongData("好几年")
+        searchSongWorker?.searchSongData("好几年")
     }
 
     fun testExtractSingleSongDataList() {}

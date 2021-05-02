@@ -1,4 +1,4 @@
-package com.example.icemusic.data.searchData
+package com.example.icemusic.data.searchData.searchResultData
 
 data class SearchSingleSongData(var songID:Int = 27678655,
                                 var songName:String = "李白",

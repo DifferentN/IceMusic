@@ -1,20 +1,16 @@
 package com.example.icemusic
 
-import android.annotation.SuppressLint
 import android.media.MediaPlayer
 import android.os.Bundle
 import android.util.Log
 import android.view.View
-import android.webkit.WebView
-import android.webkit.WebViewClient
 import androidx.appcompat.app.AppCompatActivity
-import androidx.appcompat.app.AppCompatDelegate
 import androidx.databinding.ObservableInt
-import androidx.fragment.app.FragmentActivity
 import androidx.lifecycle.ViewModelProvider
+import androidx.lifecycle.lifecycleScope
 import androidx.navigation.findNavController
 import com.example.icemusic.data.eventBus.PlaySongEvent
-import com.example.icemusic.data.searchData.SearchSingleSongData
+import com.example.icemusic.data.searchData.searchResultData.SearchSingleSongData
 import com.example.icemusic.databinding.ActivityMainBinding
 import com.example.icemusic.netWork.SearchSongWorker
 import com.example.icemusic.viewModel.PlaySongBottomTabViewModel
@@ -35,7 +31,7 @@ class MainActivity : AppCompatActivity() {
     lateinit var playSongBottomTabViewModel: PlaySongBottomTabViewModel
     var playSongBottomTabVisible:ObservableInt = ObservableInt(View.INVISIBLE)
 
-    var lastSongData:SearchSingleSongData? = null
+    var lastSongData: SearchSingleSongData? = null
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = ActivityMainBinding.inflate(layoutInflater)
@@ -67,6 +63,11 @@ class MainActivity : AppCompatActivity() {
         }
     }
 
+    override fun onDestroy() {
+        super.onDestroy()
+        EventBus.getDefault().unregister(this)
+    }
+
     fun createMediaPlayer(){
         mediaPlayer = MediaPlayer()
     }
@@ -93,12 +94,12 @@ class MainActivity : AppCompatActivity() {
                 it.setOnPreparedListener {
                     Log.i(TAG,"start play")
                     it.start()
-                    GlobalScope.launch (Dispatchers.Main){
+                    lifecycleScope.launch {
                         playSongBottomTabViewModel.playSwitchFlag.set(true)
                     }
                 }
                 it.setOnCompletionListener {
-                    GlobalScope.launch (Dispatchers.Main){
+                    lifecycleScope.launch {
                         playSongBottomTabViewModel.playSwitchFlag.set(false)
                     }
                     Log.i(TAG,"music completed")
@@ -108,7 +109,7 @@ class MainActivity : AppCompatActivity() {
                     false
                 }
             }
-            GlobalScope.launch (Dispatchers.Main){
+            lifecycleScope.launch {
                 playSongBottomTabViewModel.songData.set(curSongData)
             }
         }

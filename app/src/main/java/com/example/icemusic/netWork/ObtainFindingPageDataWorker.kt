@@ -12,7 +12,7 @@ import org.jsoup.nodes.Document
 class ObtainFindingPageDataWorker {
     val TAG = "ObtainFindingPageData"
 
-    suspend fun obtainFindingPageData(): FindingPageData {
+    fun obtainFindingPageData(): FindingPageData {
         var doc:Document = Jsoup.connect("https://y.qq.com/").get()
         var elements = doc.body().getElementsByClass("event_list__pic")
         var adDataList = mutableListOf<AdvertData>()
@@ -45,7 +45,7 @@ class ObtainFindingPageDataWorker {
         return typeEntryCellDataList
     }
 
-    suspend fun obtainRecommendSongData():MutableList<RecommendSongCellData>{
+    fun obtainRecommendSongData():MutableList<RecommendSongCellData>{
         var doc:Document = Jsoup.connect("https://www.kugou.com").get()
         var recommendSongItemsul= doc.body().getElementsByClass("tabContent")[0].child(0)
 //        print(recommendSongItemsul.toString())
@@ -67,7 +67,7 @@ class ObtainFindingPageDataWorker {
         return recommendSongCellDataList
     }
 
-    suspend fun obtainPersonalSongData():MutableList<PersonalSongCellData>{
+    fun obtainPersonalSongData():MutableList<PersonalSongTripleCellData>{
         var doc:Document = Jsoup.connect("https://y.qq.com/?ADTAG=myqq#type=index").get()
         var songItemList = doc.getElementsByClass("songlist__item_box")
         var dataList = mutableListOf<PersonalSongCellData>()
@@ -82,70 +82,16 @@ class ObtainFindingPageDataWorker {
 //            print(imageUrl+"\n"+title+"\n"+author+"\n"+time)
             dataList.add(persongSongData)
         }
-        return dataList
-    }
 
-    suspend fun createViewModelList(owner: ViewModelStoreOwner): MutableList<BaseViewModel> {
-        var findingPageData = obtainFindingPageData()
-
-        var tempViewModelList = createViewModelListByData(findingPageData, owner)
-        return tempViewModelList
-    }
-
-    suspend fun createViewModelListByData(findingPageData: FindingPageData, owner: ViewModelStoreOwner): MutableList<BaseViewModel> {
-        var viewModelList = mutableListOf<BaseViewModel>()
-        var viewModelProvider = ViewModelProvider(owner)
-        findingPageData.adDataList?.let {
-            var advertisementViewModel = viewModelProvider.get(AdvertisementViewModel::class.java)
-            advertisementViewModel.replaceAdvertData(it)
-            viewModelList.add(advertisementViewModel)
-        }
-        //添加类型链表ViewModels
-        findingPageData.typeEntryCellDataList?.let {
-            var typeEntryListViewModel = viewModelProvider.get(TypeEntryListViewModel::class.java)
-            var typeEntryCellViewModelList = mutableListOf<TypeEntryCellViewModel>()
-            for ( typeEntryCellData in it){
-                var typeEntryCellViewModel = TypeEntryCellViewModel()
-                typeEntryCellViewModel.typeEntryCellData = typeEntryCellData
-                typeEntryCellViewModelList.add(typeEntryCellViewModel)
+        var tripleCellDataList = mutableListOf<PersonalSongTripleCellData>()
+        for(i in 0 until dataList.size step 3){
+            var tripleList = mutableListOf<PersonalSongCellData>()
+            for(j in 0 until 3){
+                tripleList.add(dataList[i+j])
             }
-            typeEntryListViewModel.typeEntryCellList.value = typeEntryCellViewModelList
-
-            viewModelList.add(typeEntryListViewModel)
+            tripleCellDataList.add(PersonalSongTripleCellData(tripleList))
         }
-
-        //添加推荐歌单ViewModels
-        findingPageData.recommendSongCellList?.let {
-            var recommendSongListViewModel = viewModelProvider.get(RecommendSongListViewModel::class.java)
-            var recommendSongCellListVM = mutableListOf<RecommendSongCellViewModel>()
-            for(recommendSongCellData in it){
-                var vm = RecommendSongCellViewModel()
-                vm.recommendSongCellData = recommendSongCellData
-                recommendSongCellListVM.add(vm)
-            }
-            recommendSongListViewModel.recommendSongCellVMList.value = recommendSongCellListVM
-            Log.i(TAG,"recommend song size: "+it.size)
-            viewModelList.add(recommendSongListViewModel)
-        }
-
-        //添加私人定制
-        findingPageData.personalSongCellList?.let {
-            var personalSongListViewModel = viewModelProvider.get(PersonalSongListViewModel::class.java)
-            var tripleViewModelList = mutableListOf<PersonalSongCellTripleViewModel>()
-            for(i in 0 until it.size step 3){
-                var tripleVM = PersonalSongCellTripleViewModel()
-                var personalSongDataList = tripleVM.personalSongCellDataList.value
-                personalSongDataList?.clear()
-                for(j in 0 until 3){
-                    personalSongDataList?.add(it[i+j])
-                }
-                tripleVM.personalSongCellDataList.value = personalSongDataList
-                tripleViewModelList.add(tripleVM)
-            }
-            personalSongListViewModel.personalSongTripleList.value = tripleViewModelList
-            viewModelList.add(personalSongListViewModel)
-        }
-        return viewModelList
+        return tripleCellDataList
     }
 
 }

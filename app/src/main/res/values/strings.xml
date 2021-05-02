@@ -1,5 +1,7 @@
 <resources>
     <string name="app_name">IceMusic</string>
+    //加载页面错误提示
+    <string name="load_page_error_tip">加载失败</string>
     //tab cell
     <string name="tabHint">音乐</string>
 

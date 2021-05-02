@@ -2,6 +2,7 @@ package com.example.icemusic
 
 import android.app.Application
 import androidx.appcompat.app.AppCompatDelegate
+import com.example.icemusic.db.MusicDatabaseInstance
 
 class MusicApplication :Application(){
     override fun onCreate() {
@@ -9,5 +10,7 @@ class MusicApplication :Application(){
 //        AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_YES)
         super.onCreate()
 
+        //先实例化数据库
+        MusicDatabaseInstance.getInstance(this)
     }
 }

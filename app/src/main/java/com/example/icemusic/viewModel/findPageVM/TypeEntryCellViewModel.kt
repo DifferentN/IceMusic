@@ -2,6 +2,7 @@ package com.example.icemusic.viewModel.findPageVM
 
 import androidx.databinding.ViewDataBinding
 import androidx.lifecycle.LifecycleOwner
+import androidx.lifecycle.ViewModelStoreOwner
 import com.example.icemusic.BR
 import com.example.icemusic.R
 import com.example.icemusic.data.TypeEntryCellData
@@ -15,7 +16,7 @@ class TypeEntryCellViewModel : BaseViewModel() {
         layoutId = R.layout.type_entry_cell
     }
 
-    override fun bindData(viewDataBinding: ViewDataBinding, lifecycleOwner: LifecycleOwner) {
+    override fun bindData(viewDataBinding: ViewDataBinding, lifecycleOwner: LifecycleOwner,viewModelStoreOwner: ViewModelStoreOwner) {
         viewDataBinding.setVariable(BR.obj,typeEntryCellData)
         viewDataBinding.executePendingBindings()
     }
