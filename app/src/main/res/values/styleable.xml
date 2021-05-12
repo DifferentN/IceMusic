@@ -3,4 +3,18 @@
     <declare-styleable name="GradientRecyclerView">
         <attr name="fade_width" format="dimension"/>
     </declare-styleable>
+
+    <attr name="isPlaying" format="boolean"/>
+
+    <declare-styleable name="RotateImageView">
+        <attr name="imageUrl" format="string"/>
+        <attr name="isPlaying"/>
+    </declare-styleable>
+
+    <declare-styleable name="ProcessPlayImageView">
+        <attr name="isPlaying"/>
+        <attr name="playProcess" format="float"/>
+        <attr name="totalTime" format="float"/>
+        <attr name="songId" format="integer"/>
+    </declare-styleable>
 </resources>

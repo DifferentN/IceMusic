@@ -16,6 +16,7 @@ import androidx.lifecycle.lifecycleScope
 import androidx.navigation.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.icemusic.R
+import com.example.icemusic.activity.SearchMusicActivity
 import com.example.icemusic.adapter.recyclerAdapter.FindingPageRecyclerViewAdapter
 import com.example.icemusic.adapter.recyclerAdapter.base.BaseRecyclerViewAdapter
 import com.example.icemusic.dataViewModelMap.DataViewModelMapperRegistry
@@ -77,8 +78,13 @@ class FindingFragment() : Fragment() {
         addSearchView(fragmentBinding.findingHeadTab.headMediumParent)
 
         fragmentBinding.findingHeadTab.headMediumParent.setOnClickListener {
+            //通过fragment来切换页面
             val action = MainPageFragmentDirections.actionMainPageFragmentToNavSearchMusic()
             it.findNavController().navigate(action)
+            //通过Activity来切换页面
+//            ARouter.getInstance().build(SearchMusicActivity.ARouterSearchMusicActivity)
+//                .withTransition(R.anim.slide_in_bottom,R.anim.slide_out_bottom)
+//                .navigation()
         }
     }
     fun createViewModel(): FindingPageViewModel {

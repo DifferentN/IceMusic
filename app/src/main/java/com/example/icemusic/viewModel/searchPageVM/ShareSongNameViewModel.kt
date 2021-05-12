@@ -8,6 +8,6 @@ import androidx.lifecycle.ViewModel
  * fragment包含SearchResultContentFragment,SearchMainPageFragment
  * @property searchWord MutableLiveData<String>
  */
-class ShareSearchWordViewModel :ViewModel(){
+class ShareSongNameViewModel :ViewModel(){
     val searchWord = MutableLiveData<String>()
 }

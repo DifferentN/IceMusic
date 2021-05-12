@@ -7,6 +7,7 @@ import com.example.icemusic.data.searchData.searchResultData.SearchSingleSongDat
 import com.example.icemusic.db.entity.SearchHistorySong
 import com.example.icemusic.viewModel.BackupViewModel
 import com.example.icemusic.viewModel.LoadPageErrorVM
+import com.example.icemusic.viewModel.LoadingViewModel
 import com.example.icemusic.viewModel.findPageVM.*
 import com.example.icemusic.viewModel.searchPageVM.SearchHintNormalCellVM
 import com.example.icemusic.viewModel.searchPageVM.SearchHistorySongCellVM
@@ -32,7 +33,9 @@ class DataViewModelMapperRegistry {
             //搜索单曲的ViewModel
             SearchSingleSongData::class.java.canonicalName to SingleSongCellVM::class.java.canonicalName,
             //加载失败ViewModel
-            LoadPageErrorData::class.java.canonicalName to LoadPageErrorVM::class.java.canonicalName
+            LoadPageErrorData::class.java.canonicalName to LoadPageErrorVM::class.java.canonicalName,
+            //正在加载数据的ViewModel
+            LoadingPageData::class.java.canonicalName to LoadingViewModel::class.java.canonicalName
 
         )
         //data链表对应的ViewModel ??是否以后再修改

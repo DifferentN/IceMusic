@@ -1,4 +1,4 @@
-package com.example.icemusic.service.musicService.playback
+package com.example.icemusic.musicPlayManager.musicService.playback
 
 /**
  * 代表本地或远程的播放接口，IceMusicService使用此接口进行音乐的播放，暂停等待

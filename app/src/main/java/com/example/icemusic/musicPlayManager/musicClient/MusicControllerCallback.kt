@@ -1,4 +1,4 @@
-package com.example.icemusic.service.musicService
+package com.example.icemusic.musicPlayManager.musicClient
 
 import android.support.v4.media.MediaMetadataCompat
 import android.support.v4.media.session.MediaSessionCompat

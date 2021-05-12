@@ -21,8 +21,9 @@ import org.greenrobot.eventbus.EventBus
 import org.greenrobot.eventbus.Subscribe
 import org.greenrobot.eventbus.ThreadMode
 
+//@Route(path = "iceMusic/MainActivity")
 class MainActivity : AppCompatActivity() {
-    private val TAG = "MainActivity";
+    private val TAG = "MainActivity"
 
     var mediaPlayer:MediaPlayer? = null
 
@@ -94,6 +95,7 @@ class MainActivity : AppCompatActivity() {
                 it.setOnPreparedListener {
                     Log.i(TAG,"start play")
                     it.start()
+                    Log.i(TAG,"all time: ${it.duration}")
                     lifecycleScope.launch {
                         playSongBottomTabViewModel.playSwitchFlag.set(true)
                     }

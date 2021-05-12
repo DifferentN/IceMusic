@@ -1,9 +1,12 @@
-package com.example.icemusic.service.musicService
+package com.example.icemusic.musicPlayManager.musicService
 
 import android.os.Bundle
 import android.support.v4.media.MediaBrowserCompat.MediaItem
+import android.support.v4.media.MediaMetadataCompat
 import androidx.media.MediaBrowserServiceCompat
 import android.support.v4.media.session.MediaSessionCompat
+import android.support.v4.media.session.PlaybackStateCompat
+import android.util.Log
 
 import java.util.ArrayList
 
@@ -54,10 +57,12 @@ import java.util.ArrayList
  * &lt;/automotiveApp&gt;
  *
  */
-class IceMusicService : MediaBrowserServiceCompat() {
+class IceMusicService : MediaBrowserServiceCompat() ,MusicChangeCallback{
+    val TAG = "IceMusicService"
 
     private lateinit var session: MediaSessionCompat
 
+    private lateinit var musicPlayer: MusicPlayer
     private val callback = object : MediaSessionCompat.Callback() {
         override fun onPlay() {}
 
@@ -83,9 +88,11 @@ class IceMusicService : MediaBrowserServiceCompat() {
     override fun onCreate() {
         super.onCreate()
 
+        musicPlayer = MusicPlayer(this)
+
         session = MediaSessionCompat(this, "MyMusicService")
         sessionToken = session.sessionToken
-        session.setCallback(callback)
+        session.setCallback(musicPlayer)
         session.setFlags(
             MediaSessionCompat.FLAG_HANDLES_MEDIA_BUTTONS or
                     MediaSessionCompat.FLAG_HANDLES_TRANSPORT_CONTROLS
@@ -106,5 +113,14 @@ class IceMusicService : MediaBrowserServiceCompat() {
 
     override fun onLoadChildren(parentId: String, result: Result<MutableList<MediaItem>>) {
         result.sendResult(ArrayList())
+    }
+
+    override fun onStateChanged(state: PlaybackStateCompat?) {
+        session.setPlaybackState(state)
+        Log.i(TAG,"playback State: ${state?.state}")
+    }
+
+    override fun onMetaDataChanged(metaData: MediaMetadataCompat) {
+        session.setMetadata(metaData)
     }
 }

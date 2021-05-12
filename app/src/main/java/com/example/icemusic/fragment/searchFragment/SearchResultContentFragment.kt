@@ -8,26 +8,26 @@ import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.Observer
-import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.icemusic.adapter.recyclerAdapter.base.BaseRecyclerViewAdapter
 import com.example.icemusic.data.searchData.searchResultData.SearchResultTabData
 import com.example.icemusic.databinding.SearchResultContentPageBinding
 import com.example.icemusic.viewModel.searchPageVM.SearchResultContentVM
-import kotlinx.coroutines.GlobalScope
-import kotlinx.coroutines.launch
+import com.example.icemusic.viewModel.searchPageVM.ShareSongNameViewModel
 
 class SearchResultContentFragment():Fragment() {
     val TAG = "SearchResultContent"
 
     companion object{
-        val SONG_NAME = "SONG_NAME"
         val SEARCH_RESULT_TAB = "SEARCH_RESULT_TAB"
     }
 
     lateinit var searchResultContentPageBinding:SearchResultContentPageBinding
 
     val searchResultContentVM:SearchResultContentVM by viewModels()
+
+    //共享搜索词，并观察搜索词的变化;将vmStoreOwner设置为Activity
+    val sharedSongNameVM:ShareSongNameViewModel by viewModels({requireActivity()})
 
     var songName:String? = null
     var searchResultTabData:SearchResultTabData? = null
@@ -46,8 +46,10 @@ class SearchResultContentFragment():Fragment() {
 
         var recyclerView = searchResultContentPageBinding.searchResultContentRecyclerView
 
+        //获取选中的共享搜歌曲名称
+        songName = sharedSongNameVM.searchWord.value
+
         arguments?.let {
-            songName = it.getString(SONG_NAME)?:""
             it.getParcelable<SearchResultTabData>(SEARCH_RESULT_TAB)?.let{
                 searchResultTabData = it
             }
@@ -69,9 +71,19 @@ class SearchResultContentFragment():Fragment() {
             adapter.dataList = it
             adapter.notifyDataSetChanged()
         })
+        //观察歌曲名称的变化
+        sharedSongNameVM.searchWord.observe(viewLifecycleOwner, Observer {
+            searchResultContentVM.loadSearchResult(searchResultTabData,it)
+        })
+    }
 
-        //根据resultTabData和搜索词加载对应搜索结果页面中的内容
-        searchResultContentVM.loadSearchResult(searchResultTabData,songName)
+    override fun onStart() {
+        Log.i(TAG,"SearchResultContentFragment ${this.hashCode()} onStart")
+        super.onStart()
+    }
 
+    override fun onResume() {
+        Log.i(TAG,"SearchResultContentFragment ${this.hashCode()} onResume")
+        super.onResume()
     }
 }

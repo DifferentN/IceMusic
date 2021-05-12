@@ -1,5 +1,6 @@
 package com.example.icemusic.util
 
+import android.content.Context
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 
@@ -25,6 +26,11 @@ class ViewUtil {
                 }
             }
             return null
+        }
+
+        fun dp2px(context: Context,dp:Float):Int{
+            var density = context.resources.displayMetrics.density
+            return (dp*density+05f).toInt()
         }
     }
 

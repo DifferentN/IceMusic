@@ -1,4 +1,4 @@
-package com.example.icemusic.service.musicService
+package com.example.icemusic.musicPlayManager.musicClient
 
 import android.content.ComponentName
 import android.content.Context
@@ -14,12 +14,15 @@ import android.support.v4.media.session.PlaybackStateCompat
 import android.text.TextUtils
 import android.util.Log
 import com.example.icemusic.data.searchData.searchResultData.SearchSingleSongData
+import com.example.icemusic.musicPlayManager.musicService.IceMusicService
 import java.util.concurrent.CopyOnWriteArrayList
 
 class MusicPlayManager {
     val TAG = "MusicPlayManager"
 
     companion object {
+        val SONG_DATA = "SEARCH_SINGLE_SONG_DATA"
+        val SONG_ID = "SONG_ID"
         private var mContext: Context? = null
 
         val instance: MusicPlayManager by lazy {
@@ -34,12 +37,12 @@ class MusicPlayManager {
         }
     }
 
-    lateinit var mMediaBrowser: MediaBrowserCompat
-    lateinit var mMediaController: MediaControllerCompat
-    lateinit var mTransportControls: MediaControllerCompat.TransportControls
+    private lateinit var mMediaBrowser: MediaBrowserCompat
+    private var mMediaController: MediaControllerCompat? = null
+    private var mTransportControls: MediaControllerCompat.TransportControls? = null
 
     //保存音频信息改变时的回调接口
-    val musicControllerCallbackList = CopyOnWriteArrayList<MusicControllerCallback>()
+    private val musicControllerCallbackList = CopyOnWriteArrayList<MusicControllerCallback>()
 
     private val mConnectionCallback = object : MediaBrowserCompat.ConnectionCallback() {
         override fun onConnected() {
@@ -58,19 +61,19 @@ class MusicPlayManager {
         override fun onPlaybackStateChanged(state: PlaybackStateCompat?) {
             super.onPlaybackStateChanged(state)
             //依次通知回调接口，播放状态发生变化
-            onPlaybackStateChanged(state)
+            dispatchPlaybackStateChanged(state)
         }
 
         override fun onMetadataChanged(metadata: MediaMetadataCompat?) {
             super.onMetadataChanged(metadata)
             //依次通知回调接口，播放数据发生变化
-            onMetadataChanged(metadata)
+            dispatchMetadataChanged(metadata)
         }
 
         override fun onQueueChanged(queue: MutableList<MediaSessionCompat.QueueItem>?) {
             super.onQueueChanged(queue)
             //依次通知回调接口，播放列表发生变化
-            onQueueChanged(queue)
+            dispatchQueueChanged(queue)
         }
 
         override fun onSessionEvent(event: String?, extras: Bundle?) {
@@ -90,7 +93,6 @@ class MusicPlayManager {
 
         //连接IceMusicService
         connect()
-        mMediaController.metadata.
     }
 
     /**
@@ -105,35 +107,39 @@ class MusicPlayManager {
             }
         }
     }
-    fun getCurrentMediaId(){
-        var metaData = mMediaController.metadata
+    fun getCurrentMediaId():String?{
+        var metaData = mMediaController?.metadata
+        return metaData?.description?.mediaId
     }
 
     fun playMusic(songData:SearchSingleSongData){
+        var bundle = Bundle()
+        bundle.putParcelable(SONG_DATA,songData)
+        mTransportControls?.playFromMediaId(songData.songID.toString(),bundle)
     }
 
     fun play(){
-        mTransportControls.play()
+        mTransportControls?.play()
     }
 
     fun pause(){
-        mTransportControls.pause()
+        mTransportControls?.pause()
     }
 
     fun stop(){
-        mTransportControls.stop()
+        mTransportControls?.stop()
     }
 
     fun skipToPrevious(){
-        mTransportControls.skipToPrevious()
+        mTransportControls?.skipToPrevious()
     }
 
     fun skipToNext(){
-        mTransportControls.skipToNext()
+        mTransportControls?.skipToNext()
     }
 
     fun disconnect(){
-        mMediaController.unregisterCallback(mMediaControllerCallback)
+        mMediaController?.unregisterCallback(mMediaControllerCallback)
 
         if(mMediaBrowser.isConnected){
             mMediaBrowser.disconnect()
@@ -153,19 +159,19 @@ class MusicPlayManager {
 
         mMediaController = MediaControllerCompat(mContext!!,token)
         //音频变化监听
-        mMediaController.registerCallback(mMediaControllerCallback)
-        mTransportControls = mMediaController.transportControls
+        mMediaController?.registerCallback(mMediaControllerCallback)
+        mTransportControls = mMediaController?.transportControls
 
         /**
          * 通知音频变化
          */
 
         //播放状态变化
-        onPlaybackStateChanged(getPlaybackState())
+        dispatchPlaybackStateChanged(getPlaybackState())
         //播放数据变化
-        onMetadataChanged(getMediaMetadata())
+        dispatchMetadataChanged(getMediaMetadata())
         //播放列表变化
-        onQueueChanged(getQueue())
+        dispatchQueueChanged(getQueue())
     }
 
     private fun isValidPackage(pkg: String, uid: Int, context: Context): Boolean {
@@ -182,22 +188,23 @@ class MusicPlayManager {
                 return true
             }
         }
+        Log.i(TAG,"isValid package")
         return false
     }
 
-    fun onPlaybackStateChanged(state: PlaybackStateCompat?){
+    private fun dispatchPlaybackStateChanged(state: PlaybackStateCompat?){
         for(musicControllerCallback in musicControllerCallbackList){
             musicControllerCallback.onPlaybackStateChanged(state)
         }
     }
 
-    fun onMetadataChanged(metadata: MediaMetadataCompat?){
+    private fun dispatchMetadataChanged(metadata: MediaMetadataCompat?){
         for(musicControllerCallback in musicControllerCallbackList){
             musicControllerCallback.onMetadataChanged(metadata)
         }
     }
 
-    fun onQueueChanged(queue: List<MediaSessionCompat.QueueItem?>?){
+    private fun dispatchQueueChanged(queue: List<MediaSessionCompat.QueueItem?>?){
         for(musicControllerCallback in musicControllerCallbackList){
             musicControllerCallback.onQueueChanged(queue)
         }
@@ -225,23 +232,23 @@ class MusicPlayManager {
      * 当前播放数据
      * @return MediaMetadataCompat
      */
-    fun getMediaMetadata():MediaMetadataCompat{
-        return mMediaController.metadata
+    private fun getMediaMetadata():MediaMetadataCompat?{
+        return mMediaController?.metadata
     }
 
     /**
      * 当前播放状态
      * @return PlaybackStateCompat
      */
-    fun getPlaybackState():PlaybackStateCompat{
-        return mMediaController.playbackState
+    private fun getPlaybackState():PlaybackStateCompat?{
+        return mMediaController?.playbackState
     }
 
     /**
      * 回调播放队列
      * @return List<MediaSessionCompat.QueueItem>
      */
-    fun getQueue():List<MediaSessionCompat.QueueItem>{
-        return mMediaController.queue
+    private fun getQueue():List<MediaSessionCompat.QueueItem>?{
+        return mMediaController?.queue
     }
 }

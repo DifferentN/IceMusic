@@ -12,16 +12,22 @@ import androidx.compose.ui.graphics.imageFromResource
 import androidx.databinding.BindingAdapter
 import androidx.databinding.BindingConversion
 import androidx.databinding.InverseBindingAdapter
+import androidx.databinding.InverseMethod
 import androidx.databinding.adapters.ListenerUtil
 import androidx.recyclerview.widget.RecyclerView
 import androidx.viewpager.widget.ViewPager
 import androidx.viewpager2.adapter.FragmentStateAdapter
 import androidx.viewpager2.widget.ViewPager2
 import com.bumptech.glide.Glide
+import com.bumptech.glide.load.resource.bitmap.Rotate
 import com.example.icemusic.R
+import com.example.icemusic.musicPlayManager.musicClient.model.SongMetaData
+import com.example.icemusic.view.ProcessPlayImageView
+import com.example.icemusic.view.RotateImageView
 import com.google.android.material.tabs.TabLayout
 import com.squareup.picasso.Picasso
 val TAG = "Binding"
+
 @BindingConversion
 fun convertColorValueToDrawable(color: Int) = ColorDrawable(color)
 
@@ -153,5 +159,12 @@ fun setEditTextFocusChangeListener(editText: EditText,change: OnEditTextFocusCha
     }
     if(newListener!=null){
         editText.onFocusChangeListener = newListener
+    }
+}
+
+@BindingAdapter("app:songMetaData")
+fun setSongMetaData(processPlayImageView:ProcessPlayImageView,songMetaData:SongMetaData?){
+    songMetaData?.let {
+        processPlayImageView.setSongMetaData(it)
     }
 }

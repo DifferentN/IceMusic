@@ -7,28 +7,26 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.databinding.library.baseAdapters.BR
 import androidx.fragment.app.Fragment
+import androidx.fragment.app.viewModels
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.lifecycleScope
-import androidx.lifecycle.withCreated
 import androidx.navigation.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.icemusic.R
 import com.example.icemusic.adapter.recyclerAdapter.base.BaseRecyclerViewAdapter
-import com.example.icemusic.data.eventBus.SearchChangeEvent
 import com.example.icemusic.data.eventBus.SearchHintEvent
 import com.example.icemusic.databinding.SearchMainPageBinding
 import com.example.icemusic.db.MusicDatabaseInstance
 import com.example.icemusic.db.entity.SearchHistorySong
 import com.example.icemusic.viewModel.searchPageVM.SearchPageViewModel
+import com.example.icemusic.viewModel.searchPageVM.ShareSongNameViewModel
 import kotlinx.coroutines.Dispatchers
-import kotlinx.coroutines.GlobalScope
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
 import org.greenrobot.eventbus.EventBus
 import org.greenrobot.eventbus.Subscribe
 import org.greenrobot.eventbus.ThreadMode
-import org.jsoup.Connection
 
 class SearchMainPageFragment:Fragment() {
 
@@ -37,6 +35,9 @@ class SearchMainPageFragment:Fragment() {
     lateinit var binding : SearchMainPageBinding
 
     lateinit var searchPageViewModel:SearchPageViewModel
+
+    //将vmStoreOwner设置为Activity
+    val shareSongNameVM: ShareSongNameViewModel by viewModels({requireActivity()})
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -88,13 +89,12 @@ class SearchMainPageFragment:Fragment() {
     fun onHandleSearchHintEvent(searchHintEvent:SearchHintEvent){
         searchPageViewModel.invisibleHintList()
         var searchWord = reformSearchWord(searchHintEvent.searchWord)
+        //更新选中的共享歌曲名称
+        shareSongNameVM.searchWord.value = searchWord
         var curFragmentLabel:String = binding.searchMusicPageFragment.findNavController().currentDestination!!.label.toString()
         if(curFragmentLabel==resources.getString(R.string.nav_label_search_exhibition_fragment)){
             var action = SearchExhibitionFragmentDirections.actionSearchExhibitionFragmentToSearchResultFragment(searchWord)
             binding.searchMusicPageFragment.findNavController().navigate(action)
-        }else{
-            //处理者为SearchResultFragment
-            EventBus.getDefault().post(SearchChangeEvent(searchWord))
         }
 
         //添加搜索记录到数据库

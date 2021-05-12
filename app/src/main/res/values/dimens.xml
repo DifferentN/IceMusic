@@ -157,4 +157,11 @@
     <dimen name="search_history_song_delete_image_height">30dp</dimen>
     <dimen name="search_history_song_item_medium_blank">8dp</dimen>
 
+    //ProcessPlayImageView播放圆环的宽度
+    <dimen name="processCircleStrokeWidth">2dp</dimen>
+
+    //加载视图
+    <dimen name="refresh_image_view_width">30dp</dimen>
+    <dimen name="refresh_image_view_height">30dp</dimen>
+
 </resources>

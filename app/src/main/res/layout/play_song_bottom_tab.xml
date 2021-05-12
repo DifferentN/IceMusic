@@ -4,7 +4,7 @@
 
     <data>
         <import type="com.example.icemusic.viewModel.PlaySongBottomTabViewModel"/>
-
+        <import type="com.example.icemusic.binding.BindingKt"/>
         <variable
             name="vm"
             type="PlaySongBottomTabViewModel" />
@@ -14,14 +14,15 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
 
-        <ImageView
+        <com.example.icemusic.view.RotateImageView
             android:layout_width="@dimen/play_song_tab_song_image_width"
             android:layout_height="@dimen/play_song_tab_song_image_height"
             android:id="@+id/play_song_tab_song_image"
             android:layout_marginBottom="@dimen/play_song_tab_song_image_bottom_margin"
             android:layout_marginStart="@dimen/play_song_tab_song_image_start_margin"
             android:layout_marginEnd="@dimen/play_song_tab_song_image_end_margin"
-            android:imageUrl="@{vm.songData.imageUrl}"
+            app:imageUrl="@{vm.songData.imageUrl}"
+            app:isPlaying="@{vm.playSwitchFlag}"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"/>
 
@@ -46,12 +47,13 @@
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintStart_toEndOf="@+id/play_song_tab_song_name"/>
 
-        <ImageView
+        <com.example.icemusic.view.ProcessPlayImageView
             android:layout_width="@dimen/play_song_tab_switch_width"
             android:layout_height="@dimen/play_song_tab_switch_height"
             android:id="@+id/play_song_tab_switch"
             android:layout_marginEnd="@dimen/play_song_tab_switch_end_margin"
-            android:background="@{vm.playSwitchFlag?@drawable/pause_icon:@drawable/play_icon}"
+            app:isPlaying="@{vm.playSwitchFlag}"
+            app:songMetaData="@{vm.songMetaData}"
             android:onClick="@{vm::switchSong}"
             app:layout_constraintTop_toTopOf="parent"
             app:layout_constraintBottom_toBottomOf="parent"

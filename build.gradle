@@ -7,6 +7,8 @@ buildscript {
         activityVersion = '1.2.0'
 
         nav_version = "2.3.3"
+
+        arouter_version = "1.5.0"
     }
     repositories {
         google()

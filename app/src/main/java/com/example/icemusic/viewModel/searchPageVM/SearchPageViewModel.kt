@@ -59,7 +59,10 @@ class SearchPageViewModel: BaseViewModel(){
             hintWordDataList.value = dataList
 
             //显示提示词
-            hintRecyclerViewVisible.set(View.VISIBLE)
+            if(searchWord.length!=0){
+                hintRecyclerViewVisible.set(View.VISIBLE)
+            }else hintRecyclerViewVisible.set(View.INVISIBLE)
+
         }
     }
 

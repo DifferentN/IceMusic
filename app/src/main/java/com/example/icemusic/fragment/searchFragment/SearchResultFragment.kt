@@ -46,7 +46,6 @@ class SearchResultFragment:Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        EventBus.getDefault().register(this)
 
         var inflater = LayoutInflater.from(this.requireContext())
 
@@ -54,7 +53,7 @@ class SearchResultFragment:Fragment() {
 
         createTabData(searchWord)
 
-        var adapter = SearchResultViewPager2Adapter(searchWord,tabDataList.value,this)
+        var adapter = SearchResultViewPager2Adapter(tabDataList.value,this)
         searchResultBinding.searchResultViewPager2.adapter = adapter
 
         TabLayoutMediator(searchResultBinding.searchResultTabLayout,searchResultBinding.searchResultViewPager2){ tab: TabLayout.Tab, position: Int ->
@@ -77,11 +76,5 @@ class SearchResultFragment:Fragment() {
             add(SearchResultTabData("单曲",SearchResultTabType.SINGLE_SONG_TYPE))
         }
         tabDataList.value = newTabDataList
-    }
-
-    @Subscribe(threadMode = ThreadMode.MAIN)
-    fun onHandleSearchChange(searchChangeEvent:SearchChangeEvent){
-        var viewPager2 = searchResultBinding.searchResultViewPager2
-        var resultTabData = tabDataList.value!![viewPager2.currentItem]
     }
 }
